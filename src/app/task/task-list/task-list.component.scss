@@ -3,15 +3,21 @@
   height: 100%;
   text-align: center;
   margin: auto;
+  margin-top: 3em;
+
+  h2 {
+    margin-bottom: 0;
+  }
 }
 
 .list-item {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  display: grid;
   align-items: center;
+  grid-template-columns: 95% 5%;
 
   button {
-    margin-bottom: 2em;
+    height: 2em;
   }
 }
 

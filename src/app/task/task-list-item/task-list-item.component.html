@@ -1,9 +1,9 @@
 <div class="task-list-item">
-  <h3>{{ task.title }}</h3>
-  <p>{{ task.description }}</p>
-  <p>{{ task.type }}</p>
-  <p>{{ task.createdOn | date: 'fullDate' }}</p>
-  <label for="status">Task Completed:
+  <h3 class="grid-item">{{ task.title }}</h3>
+  <p class="grid-item">{{ task.description }}</p>
+  <p class="grid-item">{{ task.type }}</p>
+  <p class="grid-item">{{ task.createdOn | date: 'fullDate' }}</p>
+  <label for="status" class="grid-item">Task Completed:
     <input type="checkbox" name="status" (click)="togleComplete()" [value]=task.status>
   </label>
 </div>
