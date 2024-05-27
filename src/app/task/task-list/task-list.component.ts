@@ -11,4 +11,8 @@ import { TaskListItemComponent } from '../task-list-item/task-list-item.componen
 })
 export class TaskListComponent {
   @Input() tasks:Task[] = new Array();
+
+  removeTask(index : any) {
+    this.tasks.splice(index, 1);
+  }
 }

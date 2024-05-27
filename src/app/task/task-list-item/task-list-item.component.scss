@@ -1,9 +1,9 @@
 .task-list-item {
-  text-overflow: ellipsis;
-  width: 100%;
   display: flex;
+  flex-grow: 8;
   align-items: center;
   justify-content: space-between;
+  gap: 6em;
   border-style: solid;
   border-width: 2px;
   border-color: gainsboro;
@@ -11,4 +11,5 @@
   margin-bottom: 2em;
   padding-left: 2em;
   padding-right: 2em;
+  margin-right: 1em;
 }

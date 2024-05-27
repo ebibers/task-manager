@@ -5,6 +5,16 @@
   margin: auto;
 }
 
+.list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-bottom: 2em;
+  }
+}
+
 .empty-message {
  margin-top: 10em;
 }
