@@ -1,0 +1,8 @@
+<div class="task-list">
+  <h2>Tasks</h2>
+  @for (task of tasks; track $index) {
+    <task-list-item [task]=task/>
+  } @empty {
+    <h2 class="empty-message">No tasks have been created yet!</h2>
+  }
+</div>

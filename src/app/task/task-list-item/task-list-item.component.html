@@ -1,0 +1,10 @@
+<div class="task-list-item">
+  <h3>{{ task.title }}</h3>
+  <p>{{ task.description }}</p>
+  <p>{{ task.type }}</p>
+  <p>{{ task.createdOn | date: 'fullDate' }}</p>
+  <label for="status">Task Completed:
+    <input type="checkbox" name="status" (click)="togleComplete()" [value]=task.status>
+  </label>
+  <button>Delete</button>
+</div>

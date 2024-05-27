@@ -1,0 +1,14 @@
+.task-list-item {
+  text-overflow: ellipsis;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 2px;
+  border-color: gainsboro;
+  border-radius: 10px;
+  margin-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
