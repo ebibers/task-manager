@@ -10,5 +10,4 @@ import { TaskComponent } from './task/task.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  
 }

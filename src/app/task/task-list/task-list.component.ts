@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../../../shared/models/task.model';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 
