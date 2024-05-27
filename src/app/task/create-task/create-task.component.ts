@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Task } from '../../../shared/models/task.model';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'create-task',
@@ -13,9 +14,9 @@ export class CreateTaskComponent {
   newTask!:Task;
 
   taskForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    type: new FormControl(''),
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required),
   });
 
   @Output() createTaskEvent = new EventEmitter<Task>();

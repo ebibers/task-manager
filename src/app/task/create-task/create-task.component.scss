@@ -1,5 +1,20 @@
+form {
+  display: flex;
+}
+
 .form-item {
-  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  margin-right: 1em;
+}
+
+button {
+  height: 2em;
+}
+
+small {
+  color: red;
+  width: 100%;
 }
 
 input {
