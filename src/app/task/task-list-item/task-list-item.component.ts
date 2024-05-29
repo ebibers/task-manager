@@ -1,17 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Task } from '../../../shared/models/task.model';
+import { RouterLink } from '@angular/router';
+import { Task } from '../shared/models/task.model';
 
 @Component({
   selector: 'task-list-item',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './task-list-item.component.html',
   styleUrl: './task-list-item.component.scss'
 })
 export class TaskListItemComponent {
-  isChecked : boolean = false;
-  @Input() task!:Task;
+  @Input() task! : Task;
+  @Input() index : any;
 
   togleComplete() {
     this.task.status = !this.task.status;

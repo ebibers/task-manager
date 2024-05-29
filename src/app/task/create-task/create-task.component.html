@@ -1,45 +1,48 @@
-<form [formGroup]="taskForm" (ngSubmit)="handleSubmit()">
-  <div class="form-item">
-    <div class="input-field">
-      <label>Title</label>
-      <input type="text" formControlName="title" />
-    </div>
-    @if (
-      taskForm.controls.title.invalid && 
-      (taskForm.controls.title.touched || taskForm.controls.title.dirty)) 
-      {
-      @if (taskForm.controls.title.errors?.["required"]) {
-        <small>*title is required</small>
+<div class="form-container">
+  <h2>Create Task</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+    <div class="form-item">
+      <div class="input-field">
+        <label>Title</label>
+        <input type="text" formControlName="title" />
+      </div>
+      @if (
+        taskForm.controls.title.invalid && 
+        (taskForm.controls.title.touched || taskForm.controls.title.dirty)) 
+        {
+        @if (taskForm.controls.title.errors?.["required"]) {
+          <small>*title is required</small>
+        }
       }
-    }
-  </div>
-  <div class="form-item">
-    <div class="input-field">
-      <label>Description</label>
-      <input type="text" formControlName="description" />
     </div>
-    @if (
-      taskForm.controls.description.invalid && 
-      (taskForm.controls.description.touched || taskForm.controls.description.dirty)) 
-      {
-      @if (taskForm.controls.description.errors?.["required"]) {
-        <small>*description is required</small>
+    <div class="form-item">
+      <div class="input-field">
+        <label>Description</label>
+        <textarea formControlName="description" ></textarea>
+      </div>
+      @if (
+        taskForm.controls.description.invalid && 
+        (taskForm.controls.description.touched || taskForm.controls.description.dirty)) 
+        {
+        @if (taskForm.controls.description.errors?.["required"]) {
+          <small>*description is required</small>
+        }
       }
-    }
-  </div>
-  <div class="form-item">
-    <div class="input-field">
-      <label>Type</label>
-      <input type="text" formControlName="type" />
     </div>
-    @if (
-      taskForm.controls.type.invalid && 
-      (taskForm.controls.type.touched || taskForm.controls.type.dirty)) 
-      {
-      @if (taskForm.controls.type.errors?.["required"]) {
-        <small>*type is required</small>
+    <div class="form-item">
+      <div class="input-field">
+        <label>Type</label>
+        <input type="text" formControlName="type" />
+      </div>
+      @if (
+        taskForm.controls.type.invalid && 
+        (taskForm.controls.type.touched || taskForm.controls.type.dirty)) 
+        {
+        @if (taskForm.controls.type.errors?.["required"]) {
+          <small>*type is required</small>
+        }
       }
-    }
-  </div>
-  <button type="submit" [disabled]="!taskForm.valid">Create Task</button>
-</form>
+    </div>
+    <button type="submit" [disabled]="!taskForm.valid">Create Task</button>
+  </form>
+</div>

@@ -1,28 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { TaskListComponent } from './task-list/task-list.component';
-import { CreateTaskComponent } from './create-task/create-task.component';
-import { Task } from '../../shared/models/task.model';
-import { TaskService } from './task.service';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { TaskNavBarComponent } from './task-nav-bar/task-nav-bar.component';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [TaskListComponent, CreateTaskComponent],
+  imports: [RouterOutlet, TaskNavBarComponent],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
 export class TaskComponent {
-  taskList : Task[] = new Array();
-
-  constructor(private taskService : TaskService) {}
-
-  ngOnInit(): void {
-    this.taskService.getTasks().subscribe((data : any) => {
-      this.taskList = data;
-    });
-  }
-
-  addTask(task: Task) {
-    this.taskList.push(task);
-  }
 }

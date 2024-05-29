@@ -1,22 +1,21 @@
-form {
-  display: flex;
+.form-container {
+  width: 100%;
+  margin-top: 8em;
+  text-align: center;
 }
 
 .form-item {
   display: flex;
   flex-direction: column;
-  margin-right: 1em;
+  margin-bottom: 1em;
 }
 
-button {
-  height: 2em;
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 small {
   color: red;
-  width: 100%;
-}
-
-input {
-  margin-left: 1em;
 }

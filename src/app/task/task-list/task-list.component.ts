@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Task } from '../../../shared/models/task.model';
+import { Component, OnInit } from '@angular/core';
+import { Task } from '../shared/models/task.model';
+import { TaskService } from '../shared/services/task.service';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 
 @Component({
@@ -9,10 +10,22 @@ import { TaskListItemComponent } from '../task-list-item/task-list-item.componen
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
-export class TaskListComponent {
-  @Input() tasks:Task[] = new Array();
+export class TaskListComponent implements OnInit {
+  taskList : Task[] = new Array();
 
-  removeTask(index : any) {
-    this.tasks.splice(index, 1);
+  constructor(private taskService : TaskService) {
+    this.taskService.listen('createTask', (task : any) => {
+      this.taskList.push(task);
+    });
+  }
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((data : any) => {
+      this.taskList = data;
+    });
+  }
+
+  removeTask(index : any, taskList : Task[]) {
+    this.taskList = this.taskService.removeTask(index, taskList);
   }
 }
