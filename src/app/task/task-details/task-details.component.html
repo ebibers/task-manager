@@ -1,0 +1,12 @@
+<div class="task-details">
+  <h1>Task Details</h1>
+  <h2>{{ task?.title }}</h2>
+  <p>{{ task?.description }}</p>
+  <p>Type: {{ task?.type }}</p>
+  @if (task?.status) {
+    <p>Task status: completed</p>
+  } @else {
+    <p>Task status: Not completed</p>
+  }
+  <p>Creation date: {{ task?.createdOn | date: 'medium'}}</p>
+</div>

@@ -18,6 +18,10 @@ export class TaskService {
     return this.taskList;
   }
 
+  getTask(index : any) : any {
+    return this.taskList[index];
+  }
+
   createTask(task : any) {
     this.taskList.push(task);
   }
