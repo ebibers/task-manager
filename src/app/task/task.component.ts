@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TaskNavBarComponent } from './task-nav-bar/task-nav-bar.component';
+import { TaskNavBarComponent } from './shared/components/task-nav-bar/task-nav-bar.component';
 
 @Component({
   selector: 'app-task',

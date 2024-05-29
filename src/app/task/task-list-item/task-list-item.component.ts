@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Task } from '../shared/models/task.model';
+import { TaskService } from '../shared/services/task.service';
 
 @Component({
   selector: 'task-list-item',
@@ -14,7 +15,9 @@ export class TaskListItemComponent {
   @Input() task! : Task;
   @Input() index : any;
 
+  constructor(private taskService : TaskService) {}
+
   togleComplete() {
-    this.task.status = !this.task.status;
+    this.taskService.toggleComplete(this.index);
   }
 }

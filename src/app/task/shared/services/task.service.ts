@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Task } from "../models/task.model";
 
@@ -7,28 +6,27 @@ import { Task } from "../models/task.model";
   providedIn: 'root'
 })
 export class TaskService {
-  private subject = new Subject();
+  taskList : Task[] = new Array();
 
-  constructor(private http: HttpClient) {}
-
-  emit(eventName : string, payload : any) {
-    this.subject.next({eventName, payload});
-  }
-
-  listen(eventName : string, callback : (event : any) => void) {
-    this.subject.asObservable().subscribe((obj : any) => {
-      if (eventName === obj.eventName) {
-        callback(obj.payload);
-      }
+  constructor(private http: HttpClient) {
+    this.http.get('assets/tasks.json').subscribe((data : any) => {
+      this.taskList = data;
     });
   }
 
-  getTasks() {
-    return this.http.get('assets/tasks.json');
+  getAllTasks() {
+    return this.taskList;
   }
 
-  removeTask(index : any, taskList : Task[]) {
-    taskList.splice(index, 1);
-    return taskList;
+  createTask(task : any) {
+    this.taskList.push(task);
+  }
+
+  toggleComplete(index : any) {
+    this.taskList[index].status = !this.taskList[index].status;
+  }
+
+  removeTask(index : any) {
+    this.taskList.splice(index, 1);
   }
 }

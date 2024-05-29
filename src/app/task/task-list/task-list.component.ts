@@ -13,19 +13,13 @@ import { TaskListItemComponent } from '../task-list-item/task-list-item.componen
 export class TaskListComponent implements OnInit {
   taskList : Task[] = new Array();
 
-  constructor(private taskService : TaskService) {
-    this.taskService.listen('createTask', (task : any) => {
-      this.taskList.push(task);
-    });
-  }
+  constructor(private taskService : TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((data : any) => {
-      this.taskList = data;
-    });
+    this.taskList = this.taskService.getAllTasks();
   }
 
-  removeTask(index : any, taskList : Task[]) {
-    this.taskList = this.taskService.removeTask(index, taskList);
+  removeTask(index : any) {
+    this.taskService.removeTask(index);
   }
 }

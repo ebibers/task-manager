@@ -24,6 +24,6 @@ export class CreateTaskComponent {
 
   createTask() {
     this.newTask = new Task(this.taskForm.value.title, this.taskForm.value.description, this.taskForm.value.type);
-    this.taskService.emit('createTask', this.newTask);
+    this.taskService.createTask(this.newTask);
   }
 }
