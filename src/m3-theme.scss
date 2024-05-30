@@ -156,6 +156,8 @@ $dark-theme: mat.define-theme((
     use-system-variables: true,
   ),
   typography: (
+    plain-family: 'Source Sans 3',
+    brand-family: 'Source Sans 3',
     use-system-variables: true,
   ),
 ));

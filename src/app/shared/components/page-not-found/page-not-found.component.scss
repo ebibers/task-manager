@@ -1,4 +1,32 @@
-h1 {
-  text-align: center;
-  margin-top: 12em;
+.error-container {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+
+  h1 {
+    font-size: 48px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+
+  button {
+    margin-top: 1em;
+    font-size: 16px;
+  }
+
+  mat-icon {
+    transform: scale(10);
+    margin-left: 5px;
+  }
+
+  .error-text-container {
+    mat-icon {
+      transform: scale(2);
+    }
+  }
 }
