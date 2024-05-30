@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'task-list',
   standalone: true,
-  imports: [TaskListItemComponent],
+  imports: [TaskListItemComponent, MatDividerModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
@@ -17,9 +18,5 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskList = this.taskService.getAllTasks();
-  }
-
-  removeTask(index : any) {
-    this.taskService.removeTask(index);
   }
 }

@@ -1,21 +1,22 @@
-.task-list {
-  width: 60%;
-  text-align: center;
+.task-container {
+  width: 80%;
   margin: auto;
-  margin-top: 3em;
-}
+  margin-top: 8em;
 
-.list-item {
-  width: 100%;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 95% 5%;
-
-  button {
-    height: 2em;
+  h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
   }
 }
 
-.empty-message {
- margin-top: 10em;
+.task-list {
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gainsboro;
+  border-radius: 10px;
+}
+
+mat-divider {
+  border-color: gainsboro; 
 }

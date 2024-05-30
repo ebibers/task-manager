@@ -1,9 +1,15 @@
 <div class="task-list-item">
-  <h3 class="grid-item">{{ task.title }}</h3>
-  <a [routerLink]="['/tasks/task-details', index]" class="grid-item">{{ task.description }}</a>
-  <p class="grid-item">{{ task.type }}</p>
-  <p class="grid-item">{{ task.createdOn | date: 'fullDate' }}</p>
-  <label for="status" class="grid-item">Task Completed:
-    <input type="checkbox" name="status" (click)="togleComplete()" [checked]="task.status">
-  </label>
+  <div class="title-container">
+    <mat-icon>task</mat-icon>
+    <a [routerLink]="['/tasks/task-details', index]">{{ task.title }}</a>
+  </div>
+  <div class="controls-container">
+    <p class="type">{{ task.type }}</p>
+    <label for="status">Completed:
+      <mat-slide-toggle name="status" (click)="togleComplete()" [checked]="task.status"></mat-slide-toggle>
+    </label>
+    <button mat-icon-button (click)="removeTask(index)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>

@@ -1,30 +1,44 @@
 [
   {
-    "title": "Dishes",
+    "title": "Clean the dishes",
     "description": "Do all the dishes that are one the counter in the kitchen",
     "type": "Urgent",
     "createdOn": "2024-05-04T18:25:43.511Z",
     "status": false
   },
   {
-    "title": "Trash",
+    "title": "Take out the trash",
     "description": "Take out all the trash by the front door",
     "type": "Can Wait",
     "createdOn": "2024-04-23T18:25:43.511Z",
-    "status": false
+    "status": true
   },
   {
-    "title": "Homework",
+    "title": "Do your homework",
     "description": "Do all your school asignments",
     "type": "Urgent",
     "createdOn": "2024-05-01T18:25:43.511Z",
     "status": false
   },
   {
-    "title": "Gym",
+    "title": "Go to the gym",
     "description": "Go to the gym to workout",
     "type": "Can Wait",
     "createdOn": "2024-05-20T18:25:43.511Z",
     "status": false
+  },
+  {
+    "title": "Fix your broken window",
+    "description": "But a new window and replace the old, broken one",
+    "type": "Urgent",
+    "createdOn": "2024-05-26T18:25:43.511Z",
+    "status": false
+  },
+  {
+    "title": "Replace the light bulp",
+    "description": "The light bulp is about to stop working. Replace it.",
+    "type": "Can Wait",
+    "createdOn": "2024-05-19T18:25:43.511Z",
+    "status": true
   }
 ]
