@@ -3,11 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Task } from '../shared/models/task.model';
 import { Validators } from '@angular/forms';
 import { TaskService } from '../shared/services/task.service';
+import { TaskListComponent } from '../task-list/task-list.component';
 
 @Component({
   selector: 'create-task',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TaskListComponent],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss'
 })

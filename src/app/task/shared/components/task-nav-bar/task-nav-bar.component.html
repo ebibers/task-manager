@@ -1,9 +1,16 @@
-<div class="task-nav-bar">
-  <h1>TaskManager</h1>
-  <div class="nav-links">
-    <a  routerLink="/tasks/create-task">
-      Create Task</a>
-    |
-    <a routerLink="/tasks/task-list">Task List</a>
+<mat-toolbar>
+  <div class="logo">
+    <mat-icon>fact_check</mat-icon>
+    <h1>TaskManager</h1>
   </div>
-</div>
+    <div class="nav-links">
+    <button mat-button routerLink="/tasks/create-task">
+      <mat-icon>add_task</mat-icon>
+      CREATE TASK
+    </button>
+    <button mat-button routerLink="/tasks/task-list">
+      <mat-icon>list</mat-icon>
+      TASK LIST
+    </button>
+  </div>
+</mat-toolbar>
