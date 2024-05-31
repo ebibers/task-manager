@@ -5,11 +5,14 @@ import { Validators } from '@angular/forms';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { Router } from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'create-task',
   standalone: true,
-  imports: [ReactiveFormsModule, TaskListComponent],
+  imports: [ReactiveFormsModule, TaskListComponent, MatInputModule, MatButtonModule, MatIconModule],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss'
 })

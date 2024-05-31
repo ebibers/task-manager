@@ -35,8 +35,8 @@
     "status": false
   },
   {
-    "title": "Replace the light bulp",
-    "description": "The light bulp is about to stop working. Replace it.",
+    "title": "Replace the light bulb",
+    "description": "The light bulb is about to stop working. Replace it.",
     "type": "Can Wait",
     "createdOn": "2024-05-19T18:25:43.511Z",
     "status": true

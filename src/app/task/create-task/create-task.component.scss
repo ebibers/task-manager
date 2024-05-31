@@ -1,21 +1,48 @@
+@use '@angular/material' as mat;
+@use '../../../m3-theme.scss';
+
 .form-container {
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  @include mat.system-level-colors(m3-theme.$light-theme);
+  @include mat.system-level-typography(m3-theme.$light-theme);
+
+  display: flex;
   width: 100%;
-  margin-top: 8em;
-  text-align: center;
-}
-
-.form-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1em;
-}
-
-.input-field {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
 
-small {
-  color: red;
+  .task-form {
+    margin-top: 4em;
+    margin-bottom: 4em;
+    width: 25%;
+
+    h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      border-style: solid;
+      border-color: gainsboro;
+      border-width: 1px;
+      border-radius: 8px;
+      box-shadow: 3px 3px 8px gray;
+      padding: 3em;
+
+      button {
+        width: 80%;
+        font-size: 18px;
+      }
+
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
+    }
+  }
 }

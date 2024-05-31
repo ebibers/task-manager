@@ -1,17 +1,19 @@
-<div class="task-container">
-  <h2>Task List</h2>
-  <div class="task-list">
-    @for (task of taskList; track $index; let last = $last) {
-      <div class="list-item">
-        <task-list-item [task]=task [index]=$index/>
-      </div>
-      @if (!last) {
-        <mat-divider></mat-divider>
+<div class="main-container">
+  <div class="list-container">
+    <h2>Task List</h2>
+    <div class="task-list">
+      @for (task of taskList; track $index; let last = $last) {
+        <div class="list-item">
+          <task-list-item [task]=task [index]=$index/>
+        </div>
+        @if (!last) {
+          <mat-divider></mat-divider>
+        }
+      } @empty {
+        <div class="empty-message">
+          <h2>No tasks have been created yet!</h2>
+        </div>
       }
-    } @empty {
-      <div class="empty-message">
-        <h2>No tasks have been created yet!</h2>
-      </div>
-    }
+    </div>
   </div>
 </div>
