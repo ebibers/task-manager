@@ -6,14 +6,6 @@
   margin: auto;
   height: 100%;
 
-  h1 {
-    font-size: 48px;
-  }
-
-  p {
-    font-size: 24px;
-  }
-
   button {
     margin-top: 1em;
     font-size: 16px;
@@ -28,5 +20,31 @@
     mat-icon {
       transform: scale(2);
     }
+  }
+}
+
+@media (max-width: 1500px) {
+  .globe-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+  
+@media (min-width: 950px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  p {
+    font-size: 24px;
   }
 }
