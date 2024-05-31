@@ -8,9 +8,14 @@
   .title-container {
     display: flex;
     align-items: center;
+    min-width: 0px;
 
     a {
       color: #4b5456;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 2em;
 
       &:hover {
         color: #293234;
@@ -19,6 +24,7 @@
 
     mat-icon {
       margin-right: 8px;
+      flex-shrink: 0;
     }
   }
 
@@ -26,13 +32,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     gap: 2em;
   }
 
   .type {
+    width: 4em;
+    flex-grow: 0;
     text-align: center;
     background: #4b5456;
     color: #f2fbfd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 8px;

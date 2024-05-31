@@ -22,7 +22,6 @@ export class TaskListItemComponent {
 
   togleComplete() {
     this.taskService.toggleComplete(this.index);
-    console.log(this.task.status);
   }
 
   removeTask(index : any) {

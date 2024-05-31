@@ -4,6 +4,7 @@ import { Task } from '../shared/models/task.model';
 import { Validators } from '@angular/forms';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'create-task',
@@ -21,10 +22,11 @@ export class CreateTaskComponent {
     type: new FormControl('', Validators.required),
   });
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private router: Router) {}
 
   createTask() {
     this.newTask = new Task(this.taskForm.value.title, this.taskForm.value.description, this.taskForm.value.type);
     this.taskService.createTask(this.newTask);
+    this.router.navigate(['/tasks/task-list']);
   }
 }
