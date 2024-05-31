@@ -30,12 +30,17 @@ export const routes: Routes = [
       },
       {
         path: 'task-details/:index',
-        component: TaskDetailsComponent
+        component: TaskDetailsComponent,
       }
     ]
   },
   {
-    path: '**',
+    path: '404',
     component: PageNotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '404',
+    pathMatch: 'full'
   }
 ];

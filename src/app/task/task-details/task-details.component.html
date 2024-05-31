@@ -1,12 +1,40 @@
-<div class="task-details">
-  <h1>Task Details</h1>
-  <h2>{{ task?.title }}</h2>
-  <p>{{ task?.description }}</p>
-  <p>Type: {{ task?.type }}</p>
-  @if (task?.status) {
-    <p>Task status: completed</p>
-  } @else {
-    <p>Task status: Not completed</p>
-  }
-  <p>Creation date: {{ task?.createdOn | date: 'medium'}}</p>
+<div class="details-container">
+  <div class="task-details">
+    <div class="details-item">
+      <h1>Details</h1>
+      <h2>{{ task?.title }}</h2>
+    </div>
+    <div class="details-item">
+      <div class="title-container">
+        <mat-icon>description</mat-icon>
+        <h3>Description</h3>
+      </div>
+      <p>{{ task?.description }}</p>
+    </div>
+    <div class="details-item">
+      <div class="title-container">
+        <mat-icon>schedule</mat-icon>
+        <h3>Type</h3>
+      </div>
+      <p>{{ task?.type }}</p>
+    </div>
+    <div class="details-item">
+      <div class="title-container">
+        <mat-icon>check</mat-icon>
+        <h3>Status</h3>
+      </div>
+      @if (task?.status) {
+      <p>Completed</p>
+    } @else {
+      <p>Not Completed</p>
+    }
+    </div>
+    <div class="details-item">
+      <div class="title-container">
+        <mat-icon>calendar_month</mat-icon>
+        <h3>Creation Date</h3>
+      </div>
+        <p>{{ task?.createdOn | date: 'medium'}}</p>
+    </div>
+  </div>
 </div>
