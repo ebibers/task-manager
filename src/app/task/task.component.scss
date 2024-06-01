@@ -1,0 +1,58 @@
+@use '@angular/material' as mat;
+@use '../../m3-theme.scss';
+
+mat-toolbar {
+  display: flex;
+  height: 8%;
+  justify-content: space-between;
+  box-shadow: 1px 1px 10px #6f797a;
+
+  .logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    
+    mat-icon {
+      margin-right: 10px;
+      transform: scale(1.5);
+    }
+  }
+
+  button {
+    font-size: 16px;
+  }
+}
+
+.side-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 2em;
+
+  button {
+    border-radius: 0px;
+    font-size: 24px;
+  }
+}
+
+mat-sidenav-container {
+  height: 92%;
+}
+
+@media (min-width: 900px) {
+  .mobile-button {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .desktop-button {
+    display: none;
+  }
+}
+
+mat-sidenav, mat-toolbar {
+  @include mat.all-component-themes(m3-theme.$dark-theme);
+  @include mat.system-level-colors(m3-theme.$dark-theme);
+  @include mat.system-level-typography(m3-theme.$dark-theme);
+}

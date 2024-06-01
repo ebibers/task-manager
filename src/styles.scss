@@ -16,9 +16,9 @@
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 :root {
-  @include mat.all-component-themes(m3-theme.$dark-theme);
-  @include mat.system-level-colors(m3-theme.$dark-theme);
-  @include mat.system-level-typography(m3-theme.$dark-theme);
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  @include mat.system-level-colors(m3-theme.$light-theme);
+  @include mat.system-level-typography(m3-theme.$light-theme);
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
@@ -29,4 +29,4 @@
 // @include mat.color-variants-backwards-compatibility($theme);
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; box-sizing: border-box; }
-body { margin: 0; font-family: "Source Sans 3", "Helvetica Neue", sans-serif;}
+body { margin: 0; font-family: "Source Sans 3", "Helvetica Neue", sans-serif; }

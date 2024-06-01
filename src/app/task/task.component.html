@@ -1,2 +1,36 @@
-<task-nav-bar />
-<router-outlet></router-outlet>
+<mat-toolbar role="navigation">
+  <div class="logo">
+    <mat-icon>fact_check</mat-icon>
+    <h1>TaskManager</h1>
+  </div>
+  <div class="nav-links">
+    <button class="desktop-button" mat-button routerLink="/tasks/create-task">
+      <mat-icon>add_task</mat-icon>
+      CREATE TASK
+    </button>
+    <button class="desktop-button" mat-button routerLink="/tasks/task-list">
+      <mat-icon>list</mat-icon>
+      TASK LIST
+    </button>
+    <button mat-icon-button (click)="sidenav.toggle()" class="mobile-button">
+      <mat-icon>menue</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" autoFocus="false" role="navigation" position="end">
+    <div class="side-container">
+      <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/tasks/create-task">
+        <mat-icon>add_task</mat-icon>
+        CREATE TASK
+      </button>
+      <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/tasks/task-list">
+        <mat-icon>list</mat-icon>
+        TASK LIST
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content role="main">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
