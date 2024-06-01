@@ -33,7 +33,6 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    gap: 2em;
   }
 
   .type {
@@ -60,5 +59,25 @@
     &:hover {
       background: #f7f7f7;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .type {
+    display: none;
+  }
+
+  .controls-container {
+    gap: 0em;
+  }
+
+  .task-list-item {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 900px) {
+.controls-container {
+    gap: 2em;
   }
 }
