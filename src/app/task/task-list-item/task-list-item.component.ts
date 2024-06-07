@@ -22,7 +22,11 @@ export class TaskListItemComponent {
 
   togleComplete() {
     if (this.task.id) {
-      this.taskService.toggleComplete(this.task.id, this.task).subscribe(() => {
+      const newTask = this.task;
+
+      newTask.status = !newTask.status;
+
+      this.taskService.updateTask(this.task.id, newTask).subscribe(() => {
         this.updateListEvent.emit();
       });
     }

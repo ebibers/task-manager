@@ -23,9 +23,7 @@ export class TaskService {
     return this.http.post(`${this.BASE_URL}create-task`, task);
   }
 
-  toggleComplete(id: string, task: Task): Observable<any> {
-    task.status = !task.status;
-
+  updateTask(id: string, task: Task): Observable<any> {
     return this.http.patch(`${this.BASE_URL}update-task/${id}`, task);
   }
 
