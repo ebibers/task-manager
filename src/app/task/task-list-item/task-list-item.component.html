@@ -1,14 +1,14 @@
 <div class="task-list-item">
   <div class="title-container">
     <mat-icon>task</mat-icon>
-    <a [routerLink]="['/tasks/task-details', task.id]">{{ task.title }}</a>
+    <a [routerLink]="['/tasks/task-details', task?.id]">{{ task?.title }}</a>
   </div>
   <div class="controls-container">
-    <p class="type">{{ task.type }}</p>
+    <p class="type">{{ task?.type }}</p>
     <label for="status">Completed:
-      <mat-slide-toggle name="status" (click)="togleComplete()" [checked]="task.status"></mat-slide-toggle>
+      <mat-slide-toggle name="status" (click)="togleComplete(task?.id)" [checked]="task?.status"></mat-slide-toggle>
     </label>
-    <button mat-icon-button (click)="removeTask(task.id)">
+    <button mat-icon-button (click)="removeTask(task?.id)">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

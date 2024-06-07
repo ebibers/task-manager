@@ -4,7 +4,7 @@
     <div class="task-list">
       @for (task of taskList; track task.id; let last = $last) {
         <div class="list-item">
-          <task-list-item [task]=task (updateListEvent)="ngOnInit()"/>
+          <task-list-item [task]=task (toggleCompleteEvent)="updateTask($event)" (removeTaskEvent)="removeTask($event)"/>
         </div>
         @if (!last) {
           <mat-divider></mat-divider>

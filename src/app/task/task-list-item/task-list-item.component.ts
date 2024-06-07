@@ -15,26 +15,21 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   styleUrl: './task-list-item.component.scss'
 })
 export class TaskListItemComponent {
-  @Input() task!: Task;
-  @Output() updateListEvent = new EventEmitter();
+  @Input() task: Task | null = null;
+  @Output() toggleCompleteEvent = new EventEmitter<{id: string, task: Task}>();
+  @Output() removeTaskEvent = new EventEmitter<string>();
 
-  constructor(private taskService: TaskService) {}
-
-  togleComplete() {
-    if (this.task.id) {
+  togleComplete(id: any) {
+    if (this.task) {
       const newTask = this.task;
 
       newTask.status = !newTask.status;
 
-      this.taskService.updateTask(this.task.id, newTask).subscribe(() => {
-        this.updateListEvent.emit();
-      });
+      this.toggleCompleteEvent.emit({id: id, task: newTask});
     }
   }
 
   removeTask(id: any) {
-    this.taskService.removeTask(id).subscribe(() => {
-      this.updateListEvent.emit();
-    });
+    this.removeTaskEvent.emit(id);
   }
 }
