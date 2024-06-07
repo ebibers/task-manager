@@ -29,7 +29,7 @@ export const routes: Routes = [
         component: TaskListComponent
       },
       {
-        path: 'task-details/:index',
+        path: 'task-details/:id',
         component: TaskDetailsComponent,
       }
     ]

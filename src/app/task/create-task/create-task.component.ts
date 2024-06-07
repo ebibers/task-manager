@@ -28,8 +28,15 @@ export class CreateTaskComponent {
   constructor(private taskService: TaskService, private router: Router) {}
 
   createTask() {
-    this.newTask = new Task(this.taskForm.value.title, this.taskForm.value.description, this.taskForm.value.type);
-    this.taskService.createTask(this.newTask);
-    this.router.navigate(['/tasks/task-list']);
+    if (this.taskForm.value.title && this.taskForm.value.description && this.taskForm.value.type) {
+      this.newTask = new Task(this.taskForm.value.title, this.taskForm.value.description, this.taskForm.value.type);
+      
+      this.taskService.createTask(this.newTask).subscribe(() => {
+        this.router.navigate(['/tasks/task-list']);
+      });
+    } else {
+      this.router.navigate(['/tasks/task-list']);
+      return;
+    }
   }
 }

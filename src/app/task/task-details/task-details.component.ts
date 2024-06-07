@@ -20,11 +20,18 @@ export class TaskDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params : ParamMap) => {
-      let index = params.get('index');
-      this.task = this.taskService.getTask(index);
+      let id = params.get('id');
 
-      if (this.task == null) {
-        this.router.navigate(['/404']);
+      if (id) {
+        this.taskService.getTask(id).subscribe({
+          next: (data: Task) => {
+            this.task = data;
+          },
+
+          error: () => {
+            this.router.navigate(['/404']);
+          }
+        });
       }
     });
   }

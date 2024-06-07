@@ -1,11 +1,12 @@
 export class Task {
+  id: string | undefined;
   title: string;
   description: string;
   type: string;
-  createdOn: Date;
+  createdOn: Date | string;
   status: boolean;
 
-  constructor(title: any, description: any, type: any) {
+  constructor(title: string, description: string, type: string) {
     this.title = title;
     this.description = description;
     this.type = type;
