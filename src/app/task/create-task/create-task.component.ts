@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Task } from '../shared/models/task.model';
+import { Task, newTask } from '../shared/models/task.model';
 import { Validators } from '@angular/forms';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListComponent } from '../task-list/task-list.component';
@@ -35,7 +35,7 @@ export class CreateTaskComponent implements OnDestroy {
 
   createTask() {
     if (this.taskForm.valid) {
-      const newTask: Task = {
+      const newTask: newTask = {
         title: this.taskForm.value.title as string,
         description: this.taskForm.value.description as string,
         type: this.taskForm.value.type as string,
