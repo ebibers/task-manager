@@ -5,13 +5,22 @@
   align-items: center;
   word-wrap: break-word;
 
+  .details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  mat-slide-toggle {
+    margin-left: 5px;
+  }
+
   .task-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     word-wrap: break-word;
-    margin-top: 3em;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     margin-left: 1em;
     margin-right: 1em;
     padding: 3em;
@@ -33,6 +42,7 @@
 
   h2 {
     font-size: 28px;
+    margin: 0;
   }
 
   h1 {
@@ -52,17 +62,20 @@
 @media (min-width: 1000px) {
   .task-details {
     width: 30%;
+    margin-top: 5em;
   }
 }
 
 @media (max-width: 1000px) {
   .task-details {
     width: 40%;
+    margin-top: 5em;
   }
 }
 
 @media (max-width: 700px) {
   .task-details {
+    margin-top: 1em;
     width: 90%;
   }
 }
@@ -70,5 +83,6 @@
 @media (min-width: 1500px) {
   .task-details {
     width: 25%;
+    margin-top: 5em;
   }
 }
