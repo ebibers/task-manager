@@ -1,22 +1,27 @@
 <div class="details-container">
-  <div class="task-details">
+  <form class="task-details" [formGroup]="editForm" (ngSubmit)="onSave()">
     <div class="details-item">
       <div class="details-header">
         <h1>Details</h1>
         @if (!editable) {
-          <button mat-icon-button matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit()">
+          <button mat-icon-button type="button" matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit()">
             <mat-icon>edit</mat-icon>
           </button>
         } @else {
-          <button mat-icon-button matTooltip="Save changes" matTooltipPosition="below" (click)="onSave()">
-            <mat-icon>check</mat-icon>
-          </button>
+          <div>
+            <button mat-icon-button type="button" (click)="onCancel()" matTooltip="Cancel changes" matTooltipPosition="below">
+              <mat-icon>close</mat-icon>
+            </button>
+            <button mat-icon-button type="submit" [disabled]="!editForm.valid" matTooltip="Save changes" matTooltipPosition="below">
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
         }
       </div>
       @if (!editable) {
         <h2>{{ task?.title }}</h2>
       } @else {
-        <input type="text" [value]="task?.title">
+        <input type="text" formControlName="title" [value]="editForm.value.title">
       }
     </div>
     <div class="details-item">
@@ -27,7 +32,7 @@
       @if (!editable) {
         <p>{{ task?.description }}</p>
       } @else {
-        <input type="text" [value]="task?.description">
+        <input type="text" formControlName="description" [value]="task?.description">
       }
     </div>
     <div class="details-item">
@@ -38,7 +43,7 @@
       @if (!editable) {
         <p>{{ task?.type }}</p>
       } @else {
-        <input type="text" [value]="task?.type">
+        <input type="text" formControlName="type" [value]="task?.type">
       }
     </div>
     <div class="details-item">
@@ -53,8 +58,8 @@
           <p>Not Completed</p>
         }
       } @else {
-        <label for="status">Completed:
-          <mat-slide-toggle name="status" [checked]="task?.status"></mat-slide-toggle>
+        <label>Completed:
+          <mat-slide-toggle formControlName="status" [checked]="task?.status"></mat-slide-toggle>
         </label>
       }
     </div>
@@ -65,5 +70,5 @@
       </div>
         <p>{{ task?.createdOn | date: 'medium'}}</p>
     </div>
-  </div>
+  </form>
 </div>

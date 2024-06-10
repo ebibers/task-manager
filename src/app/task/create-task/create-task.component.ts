@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Task, newTask } from '../shared/models/task.model';
+import { newTask } from '../shared/models/task.model';
 import { Validators } from '@angular/forms';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListComponent } from '../task-list/task-list.component';

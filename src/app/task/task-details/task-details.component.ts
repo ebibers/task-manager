@@ -11,11 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'task-details',
   standalone: true,
-  imports: [DatePipe, MatIconModule, MatButtonModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
+  imports: [DatePipe, MatIconModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
@@ -23,6 +25,13 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   task : Task | null = null;
   editable: boolean = false;
+
+  editForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required),
+    status: new FormControl(false, Validators.required)
+  });
 
   constructor(private taskService: TaskService, private router : Router, private route: ActivatedRoute) {}
 
@@ -47,13 +56,44 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   onEdit() {
+    this.editForm.setValue({
+      title: this.task?.title as string,
+      description: this.task?.description as string,
+      type: this.task?.type as string,
+      status: this.task?.status as boolean
+    });
+
+    this.editable = !this.editable;
+  }
+
+  onCancel() {
+    this.editForm.reset();
+
     this.editable = !this.editable;
   }
 
   onSave() {
+    if (this.editForm.valid) {
+      const editedTask: Task = {
+        id: this.task?.id as string,
+        title: this.editForm.value.title as string,
+        description: this.editForm.value.description as string,
+        type: this.editForm.value.type as string,
+        createdOn: this.task?.createdOn as Date,
+        status: this.editForm.value.status as boolean,
+      }
 
+      const id = this.task?.id;
 
-    this.editable = !this.editable;
+      if (id) {
+        this.taskService.updateTask(id, editedTask)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          this.ngOnInit();
+          this.editable = !this.editable;
+        })
+      }
+    }
   }
 
   ngOnDestroy(): void {
