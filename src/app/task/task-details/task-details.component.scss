@@ -15,6 +15,18 @@
     margin-left: 5px;
   }
 
+  small {
+    color: red;
+  }
+
+  .edit-input {
+    padding: 5px;
+    border-color: black;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+  }
+
   .task-details {
     display: flex;
     flex-direction: column;

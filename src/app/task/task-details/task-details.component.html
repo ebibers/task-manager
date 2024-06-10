@@ -21,7 +21,15 @@
       @if (!editable) {
         <h2>{{ task?.title }}</h2>
       } @else {
-        <input type="text" formControlName="title" [value]="editForm.value.title">
+        <input type="text" class="edit-input" formControlName="title" [value]="editForm.value.title">
+        @if (
+          editForm.controls.title.invalid && 
+          (editForm.controls.title.touched || editForm.controls.title.dirty)) 
+          {
+          @if (editForm.controls.title.errors?.["required"]) {
+            <small>*title is required</small>
+          }
+        }
       }
     </div>
     <div class="details-item">
@@ -32,7 +40,15 @@
       @if (!editable) {
         <p>{{ task?.description }}</p>
       } @else {
-        <input type="text" formControlName="description" [value]="task?.description">
+        <input type="text" class="edit-input" formControlName="description" [value]="task?.description">
+        @if (
+          editForm.controls.description.invalid && 
+          (editForm.controls.description.touched || editForm.controls.description.dirty)) 
+          {
+          @if (editForm.controls.description.errors?.["required"]) {
+            <small>*description is required</small>
+          }
+        }
       }
     </div>
     <div class="details-item">
@@ -43,7 +59,15 @@
       @if (!editable) {
         <p>{{ task?.type }}</p>
       } @else {
-        <input type="text" formControlName="type" [value]="task?.type">
+        <input type="text" class="edit-input" formControlName="type" [value]="task?.type">
+        @if (
+          editForm.controls.type.invalid && 
+          (editForm.controls.type.touched || editForm.controls.type.dirty)) 
+          {
+          @if (editForm.controls.type.errors?.["required"]) {
+            <small>*type is required</small>
+          }
+        }
       }
     </div>
     <div class="details-item">
