@@ -19,6 +19,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(private taskService : TaskService) {}
 
   ngOnInit(): void {
+    this.getTasks();
+  }
+
+  getTasks() {
     this.taskService.getAllTasks()
     .pipe(takeUntil(this.destroy$))
     .subscribe((data: Task[]) => {
@@ -35,7 +39,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskService.updateTask(event.id, event.task)
     .pipe(takeUntil(this.destroy$))
     .subscribe(() => {
-      this.ngOnInit();
+      this.getTasks();
     });
   }
 
@@ -43,7 +47,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskService.removeTask(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe(() => {
-      this.ngOnInit();
+      this.getTasks();
     });
   }
 }

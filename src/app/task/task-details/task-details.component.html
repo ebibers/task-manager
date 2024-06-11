@@ -1,33 +1,91 @@
 <div class="details-container">
-  <div class="task-details">
+  <form class="task-details" [formGroup]="editForm" (ngSubmit)="onSave()">
     <div class="details-item">
-      <h1>Details</h1>
-      <h2>{{ task?.title }}</h2>
+      <div class="details-header">
+        <h1>Details</h1>
+        @if (!editable) {
+          <button mat-icon-button type="button" matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        } @else {
+          <div>
+            <button mat-icon-button type="button" (click)="onCancel()" matTooltip="Cancel changes" matTooltipPosition="below">
+              <mat-icon>close</mat-icon>
+            </button>
+            <button mat-icon-button type="submit" [disabled]="!editForm.valid" matTooltip="Save changes" matTooltipPosition="below">
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+      @if (!editable) {
+        <h2>{{ task?.title }}</h2>
+      } @else {
+        <input type="text" class="edit-input" formControlName="title" [value]="editForm.value.title">
+        @if (
+          editForm.controls.title.invalid && 
+          (editForm.controls.title.touched || editForm.controls.title.dirty)) 
+          {
+          @if (editForm.controls.title.errors?.["required"]) {
+            <small>*title is required</small>
+          }
+        }
+      }
     </div>
     <div class="details-item">
       <div class="title-container">
         <mat-icon>description</mat-icon>
         <h3>Description</h3>
       </div>
-      <p>{{ task?.description }}</p>
+      @if (!editable) {
+        <p>{{ task?.description }}</p>
+      } @else {
+        <input type="text" class="edit-input" formControlName="description" [value]="task?.description">
+        @if (
+          editForm.controls.description.invalid && 
+          (editForm.controls.description.touched || editForm.controls.description.dirty)) 
+          {
+          @if (editForm.controls.description.errors?.["required"]) {
+            <small>*description is required</small>
+          }
+        }
+      }
     </div>
     <div class="details-item">
       <div class="title-container">
         <mat-icon>schedule</mat-icon>
         <h3>Type</h3>
       </div>
-      <p>{{ task?.type }}</p>
+      @if (!editable) {
+        <p>{{ task?.type }}</p>
+      } @else {
+        <input type="text" class="edit-input" formControlName="type" [value]="task?.type">
+        @if (
+          editForm.controls.type.invalid && 
+          (editForm.controls.type.touched || editForm.controls.type.dirty)) 
+          {
+          @if (editForm.controls.type.errors?.["required"]) {
+            <small>*type is required</small>
+          }
+        }
+      }
     </div>
     <div class="details-item">
       <div class="title-container">
         <mat-icon>check</mat-icon>
         <h3>Status</h3>
       </div>
-      @if (task?.status) {
-      <p>Completed</p>
-    } @else {
-      <p>Not Completed</p>
-    }
+      @if (!editable) {
+        @if (task?.status) {
+          <p>Completed</p>
+        } @else {
+          <p>Not Completed</p>
+        }
+      } @else {
+        <label>Completed:
+          <mat-slide-toggle formControlName="status" [checked]="task?.status"></mat-slide-toggle>
+        </label>
+      }
     </div>
     <div class="details-item">
       <div class="title-container">
@@ -36,5 +94,5 @@
       </div>
         <p>{{ task?.createdOn | date: 'medium'}}</p>
     </div>
-  </div>
+  </form>
 </div>
