@@ -36,7 +36,9 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   constructor(private taskService: TaskService, private router : Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params : ParamMap) => {
+    this.route.paramMap
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((params : ParamMap) => {
       let id = params.get('id');
 
       if (id) {
@@ -90,8 +92,10 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       const id = this.task?.id;
 
       if (id) {
-        this.getTask(id);
-        this.editable = !this.editable;
+        this.taskService.updateTask(id, editedTask).subscribe(() => {
+          this.getTask(id);
+          this.editable = !this.editable;
+        });
       }
     }
   }
