@@ -40,17 +40,21 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       let id = params.get('id');
 
       if (id) {
-        this.taskService.getTask(id)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe({
-          next: (data: Task) => {
-            this.task = data;
-          },
+        this.getTask(id);
+      }
+    });
+  }
 
-          error: () => {
-            this.router.navigate(['/404']);
-          }
-        });
+  getTask(id: string) {
+    this.taskService.getTask(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (data: Task) => {
+        this.task = data;
+      },
+
+      error: () => {
+        this.router.navigate(['/404']);
       }
     });
   }
@@ -86,12 +90,8 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       const id = this.task?.id;
 
       if (id) {
-        this.taskService.updateTask(id, editedTask)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => {
-          this.ngOnInit();
-          this.editable = !this.editable;
-        })
+        this.getTask(id);
+        this.editable = !this.editable;
       }
     }
   }
