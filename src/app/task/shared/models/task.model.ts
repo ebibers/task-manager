@@ -1,15 +1,10 @@
-export class Task {
+export interface Task {
+  id: string;
   title: string;
   description: string;
   type: string;
-  createdOn: Date;
+  createdOn: Date | string;
   status: boolean;
-
-  constructor(title: any, description: any, type: any) {
-    this.title = title;
-    this.description = description;
-    this.type = type;
-    this.createdOn = new Date();
-    this.status = false;
-  }
 }
+
+export type newTask = Omit<Task, 'id'>;

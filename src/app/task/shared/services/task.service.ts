@@ -1,36 +1,34 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Task } from "../models/task.model";
+import { Task, newTask } from "../models/task.model";
+import { Observable } from "rxjs";
+import { environment } from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  taskList : Task[] = new Array();
+  BASE_URL: string = environment.API_DOMAIN;
 
-  constructor(private http: HttpClient) {
-    this.http.get('assets/tasks.json').subscribe((data : any) => {
-      this.taskList = data;
-    });
+  constructor(private http: HttpClient) {}
+
+  getAllTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.BASE_URL);
   }
 
-  getAllTasks() {
-    return this.taskList;
+  getTask(id: string): Observable<Task> {
+    return this.http.get<Task>(this.BASE_URL + id);
   }
 
-  getTask(index : any) : any {
-    return this.taskList[index];
+  createTask(task: newTask): Observable<newTask> {
+    return this.http.post<newTask>(this.BASE_URL, task);
   }
 
-  createTask(task : any) {
-    this.taskList.push(task);
+  updateTask(id: string, task: Task): Observable<Task> {
+    return this.http.patch<Task>(this.BASE_URL + id, task);
   }
 
-  toggleComplete(index : any) {
-    this.taskList[index].status = !this.taskList[index].status;
-  }
-
-  removeTask(index : any) {
-    this.taskList.splice(index, 1);
+  removeTask(id: string): Observable<Task> {
+    return this.http.delete<Task>(this.BASE_URL + id);
   }
 }

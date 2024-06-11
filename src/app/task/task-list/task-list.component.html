@@ -2,9 +2,9 @@
   <div class="list-container">
     <h2>Task List</h2>
     <div class="task-list">
-      @for (task of taskList; track $index; let last = $last) {
+      @for (task of taskList; track task.id; let last = $last) {
         <div class="list-item">
-          <task-list-item [task]=task [index]=$index/>
+          <task-list-item [task]=task (toggleCompleteEvent)="updateTask($event)" (removeTaskEvent)="removeTask($event)"/>
         </div>
         @if (!last) {
           <mat-divider></mat-divider>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Task } from '../shared/models/task.model';
@@ -15,16 +15,21 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   styleUrl: './task-list-item.component.scss'
 })
 export class TaskListItemComponent {
-  @Input() task! : Task;
-  @Input() index : any;
+  @Input() task: Task | null = null;
+  @Output() toggleCompleteEvent = new EventEmitter<{id: string, task: Task}>();
+  @Output() removeTaskEvent = new EventEmitter<string>();
 
-  constructor(private taskService : TaskService) {}
+  togleComplete(id: any) {
+    if (this.task) {
+      const newTask = this.task;
 
-  togleComplete() {
-    this.taskService.toggleComplete(this.index);
+      newTask.status = !newTask.status;
+
+      this.toggleCompleteEvent.emit({id: id, task: newTask});
+    }
   }
 
-  removeTask(index : any) {
-    this.taskService.removeTask(index);
+  removeTask(id: any) {
+    this.removeTaskEvent.emit(id);
   }
 }
