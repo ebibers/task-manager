@@ -92,7 +92,9 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
       const id = this.task?.id;
 
       if (id) {
-        this.taskService.updateTask(id, editedTask).subscribe(() => {
+        this.taskService.updateTask(id, editedTask)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
           this.getTask(id);
           this.editable = !this.editable;
         });
