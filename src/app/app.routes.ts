@@ -4,6 +4,7 @@ import { CreateTaskComponent } from './task/create-task/create-task.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskDetailsComponent } from './task/task-details/task-details.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { ServerErrorComponent } from './shared/components/server-error/server-error.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,10 @@ export const routes: Routes = [
   {
     path: '404',
     component: PageNotFoundComponent
+  },
+  {
+    path: '500',
+    component: ServerErrorComponent
   },
   {
     path: '**',

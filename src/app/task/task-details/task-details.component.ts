@@ -1,29 +1,26 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { DatePipe, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, of, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'task-details',
   standalone: true,
-  imports: [DatePipe, MatIconModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
+  imports: [DatePipe, AsyncPipe, MatIconModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
 export class TaskDetailsComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
-  task : Task | null = null;
+  task$: Observable<Task> | null = null;
   editable: boolean = false;
 
   editForm = new FormGroup({
@@ -36,7 +33,9 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   constructor(private taskService: TaskService, private router : Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params : ParamMap) => {
+    this.route.paramMap
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((params : ParamMap) => {
       let id = params.get('id');
 
       if (id) {
@@ -46,25 +45,22 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   getTask(id: string) {
-    this.taskService.getTask(id)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe({
-      next: (data: Task) => {
-        this.task = data;
-      },
-
-      error: () => {
+    this.task$ = this.taskService.getTask(id)
+    .pipe(
+      catchError(err => {
         this.router.navigate(['/404']);
-      }
-    });
+
+        return of();
+      })
+    );
   }
 
-  onEdit() {
+  onEdit(task: Task) {
     this.editForm.setValue({
-      title: this.task?.title as string,
-      description: this.task?.description as string,
-      type: this.task?.type as string,
-      status: this.task?.status as boolean
+      title: task.title,
+      description: task.description,
+      type: task.type,
+      status: task.status
     });
 
     this.editable = !this.editable;
@@ -76,23 +72,27 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     this.editable = !this.editable;
   }
 
-  onSave() {
+  onSave(task: Task) {
     if (this.editForm.valid) {
       const editedTask: Task = {
-        id: this.task?.id as string,
+        id: task.id,
         title: this.editForm.value.title as string,
         description: this.editForm.value.description as string,
         type: this.editForm.value.type as string,
-        createdOn: this.task?.createdOn as Date,
+        createdOn: task.createdOn,
         status: this.editForm.value.status as boolean,
       }
 
-      const id = this.task?.id;
+      this.task$ = this.taskService.updateTask(task.id, editedTask)
+      .pipe(
+        catchError(err => {
+          this.router.navigate(['/500']);
+          
+          return of();
+        })
+      );
 
-      if (id) {
-        this.getTask(id);
-        this.editable = !this.editable;
-      }
+      this.editable = !this.editable;
     }
   }
 

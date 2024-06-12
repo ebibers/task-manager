@@ -8,7 +8,7 @@ import { environment } from "../../../../environments/environment";
   providedIn: 'root'
 })
 export class TaskService {
-  BASE_URL: string = environment.API_DOMAIN;
+  BASE_URL: string = environment.API_DOMAIN + 'tasks/';
 
   constructor(private http: HttpClient) {}
 
