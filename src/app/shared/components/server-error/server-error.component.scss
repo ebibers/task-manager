@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+@use '../../../../m3-theme.scss';
+
+.error-container {
+  @include mat.all-component-themes(m3-theme.$dark-theme);
+  @include mat.system-level-colors(m3-theme.$dark-theme);
+  @include mat.system-level-typography(m3-theme.$dark-theme);
+
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 100%;
+
+  button {
+    margin-top: 1em;
+    font-size: 16px;
+  }
+
+  mat-icon {
+    transform: scale(10);
+    margin-left: 5px;
+  }
+
+  .error-text-container {
+    mat-icon {
+      transform: scale(2);
+    }
+  }
+}
+
+@media (max-width: 1500px) {
+  .globe-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+  
+@media (min-width: 950px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+}

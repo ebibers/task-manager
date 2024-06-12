@@ -4,7 +4,7 @@ import { TaskService } from '../shared/services/task.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, of, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -45,7 +45,14 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   getTask(id: string) {
-    this.task$ = this.taskService.getTask(id);
+    this.task$ = this.taskService.getTask(id)
+    .pipe(
+      catchError(err => {
+        this.router.navigate(['/404']);
+
+        return of();
+      })
+    );
   }
 
   onEdit(task: Task) {
@@ -76,12 +83,16 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
         status: this.editForm.value.status as boolean,
       }
 
-      this.taskService.updateTask(task.id, editedTask)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.getTask(task.id);
-        this.editable = !this.editable;
-      });
+      this.task$ = this.taskService.updateTask(task.id, editedTask)
+      .pipe(
+        catchError(err => {
+          this.router.navigate(['/500']);
+          
+          return of();
+        })
+      );
+
+      this.editable = !this.editable;
     }
   }
 
