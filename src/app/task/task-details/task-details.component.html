@@ -95,6 +95,46 @@
         </div>
           <p>{{ task.createdOn | date: 'medium'}}</p>
       </div>
+      <div class="details-item">
+        <div class="title-container">
+          <mat-icon>person</mat-icon>
+          <h3>Assigned To</h3>
+        </div>
+        @if (!editable) {
+          @if (assignedUser$ | async; as assignedUser) {
+            <p>
+              {{ assignedUser.firstName }}
+              {{ assignedUser.lastName }}
+              ({{ assignedUser.username }})
+            </p>
+          } @else {
+            <p>UNASSIGNED</p>
+          }
+        } @else {
+          <mat-select formControlName="assignedTo" [value]="editForm.value.assignedTo">
+            <mat-option value="UNASSIGNED">
+              UNASSIGNED
+            </mat-option>
+            @if (users$ | async; as users) {
+              @for (user of users; track user.id) {
+                <mat-option [value]="user.id">
+                  {{ user.firstName }}
+                  {{ user.lastName }}
+                  ({{ user.username }})
+                </mat-option>
+              }
+            }
+          </mat-select>
+          @if (
+            editForm.controls.assignedTo.invalid && 
+            (editForm.controls.assignedTo.touched || editForm.controls.assignedTo.dirty)) 
+            {
+            @if (editForm.controls.assignedTo.errors?.["required"]) {
+              <small>*Select an option</small>
+            }
+          }
+        }
+      </div>
     </form>
   }
 </div>

@@ -47,6 +47,34 @@
           }
         }
       </mat-form-field>
+      <mat-form-field class="form-item">
+        <mat-label>
+          <mat-icon>person</mat-icon>
+          Assigned To
+        </mat-label>
+        <mat-select formControlName="assignedTo">
+          <mat-option value="UNASSIGNED">
+            UNASSIGNED
+          </mat-option>
+          @if (users$ | async; as users) {
+            @for (user of users; track user.id) {
+              <mat-option [value]="user.id">
+                {{ user.firstName }}
+                {{ user.lastName }}
+                ({{ user.username }})
+              </mat-option>
+            }
+          }
+        </mat-select>
+        @if (
+          taskForm.controls.assignedTo.invalid && 
+          (taskForm.controls.assignedTo.touched || taskForm.controls.assignedTo.dirty)) 
+          {
+          @if (taskForm.controls.assignedTo.errors?.["required"]) {
+            <mat-error>Choose an option</mat-error>
+          }
+        }
+      </mat-form-field>
       <button mat-flat-button type="submit" [disabled]="!taskForm.valid">Create Task</button>
     </form>
   </div>
