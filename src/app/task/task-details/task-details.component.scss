@@ -27,14 +27,22 @@
     font-size: 16px;
   }
 
+  mat-select {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #d1d1d1;
+    }
+  }
+
   .task-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     word-wrap: break-word;
-    margin-bottom: 2em;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin: 1em;
     padding: 3em;
     border-style: solid;
     border-width: 1px;
@@ -74,20 +82,17 @@
 @media (min-width: 1000px) {
   .task-details {
     width: 30%;
-    margin-top: 5em;
   }
 }
 
 @media (max-width: 1000px) {
   .task-details {
     width: 40%;
-    margin-top: 5em;
   }
 }
 
 @media (max-width: 700px) {
   .task-details {
-    margin-top: 1em;
     width: 90%;
   }
 }
@@ -95,6 +100,5 @@
 @media (min-width: 1500px) {
   .task-details {
     width: 25%;
-    margin-top: 5em;
   }
 }

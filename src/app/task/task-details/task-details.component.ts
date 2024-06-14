@@ -4,33 +4,39 @@ import { TaskService } from '../shared/services/task.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, Subject, catchError, of, takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, of, switchMap, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatInputModule} from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../shared/services/user.service';
+import { User } from '../../shared/models/user.model';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'task-details',
   standalone: true,
-  imports: [DatePipe, AsyncPipe, MatIconModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
+  imports: [DatePipe, AsyncPipe, MatIconModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })
 export class TaskDetailsComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   task$: Observable<Task> | null = null;
+  users$: Observable<User[]> | null = null;
+  assignedUser$: Observable<User> | null = null;
   editable: boolean = false;
 
   editForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
-    status: new FormControl(false, Validators.required)
+    status: new FormControl(false, Validators.required),
+    assignedTo: new FormControl('', Validators.required)
   });
 
-  constructor(private taskService: TaskService, private router : Router, private route: ActivatedRoute) {}
+  constructor(private taskService: TaskService, private userService: UserService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap
@@ -40,6 +46,8 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
       if (id) {
         this.getTask(id);
+        this.getUsers();
+        this.getAssignedUser();
       }
     });
   }
@@ -55,12 +63,25 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
+  getUsers() {
+    this.users$ = this.userService.getAllUsers();
+  }
+
+  getAssignedUser() {
+    if (this.task$) {
+      this.assignedUser$ = this.task$.pipe(
+        switchMap((task) => this.userService.getUser(task.assignedTo))
+      );
+    }
+  }
+
   onEdit(task: Task) {
     this.editForm.setValue({
       title: task.title,
       description: task.description,
       type: task.type,
-      status: task.status
+      status: task.status,
+      assignedTo: task.assignedTo
     });
 
     this.editable = !this.editable;
@@ -81,6 +102,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
         type: this.editForm.value.type as string,
         createdOn: task.createdOn,
         status: this.editForm.value.status as boolean,
+        assignedTo: this.editForm.value.assignedTo as string
       }
 
       this.task$ = this.taskService.updateTask(task.id, editedTask)
