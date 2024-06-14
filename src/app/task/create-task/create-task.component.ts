@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { newTask } from '../shared/models/task.model';
 import { Validators } from '@angular/forms';
@@ -21,9 +21,9 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss'
 })
-export class CreateTaskComponent implements OnDestroy, OnInit {
+export class CreateTaskComponent implements OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
-  users$: Observable<User[]> | null = null;
+  users$: Observable<User[]> = this.userService.getAllUsers();
 
   taskForm = new FormGroup({
     title: new FormControl('', Validators.required),
@@ -33,14 +33,6 @@ export class CreateTaskComponent implements OnDestroy, OnInit {
   });
 
   constructor(private taskService: TaskService, private userService: UserService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.users$ = this.userService.getAllUsers();
-  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
