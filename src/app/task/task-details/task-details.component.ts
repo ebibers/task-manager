@@ -24,7 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 export class TaskDetailsComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   task$: Observable<Task> | null = null;
-  users$: Observable<User[]> | null = null;
+  users$: Observable<User[]> = this.userService.getAllUsers();
   assignedUser$: Observable<User> | null = null;
   editable: boolean = false;
 
@@ -46,7 +46,6 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
 
       if (id) {
         this.getTask(id);
-        this.getUsers();
         this.getAssignedUser();
       }
     });
@@ -61,10 +60,6 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
         return of();
       })
     );
-  }
-
-  getUsers() {
-    this.users$ = this.userService.getAllUsers();
   }
 
   getAssignedUser() {
