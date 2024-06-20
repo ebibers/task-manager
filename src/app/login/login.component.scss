@@ -1,0 +1,99 @@
+@use '@angular/material' as mat;
+@use '../../m3-theme.scss';
+
+.form-container {
+  @include mat.all-component-themes(m3-theme.$light-theme);
+  @include mat.system-level-colors(m3-theme.$light-theme);
+  @include mat.system-level-typography(m3-theme.$light-theme);
+
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .login-form {
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      border-style: solid;
+      border-color: gainsboro;
+      border-width: 1px;
+      border-radius: 8px;
+      box-shadow: 3px 3px 8px gray;
+      padding: 3em;
+
+      button {
+        width: 80%;
+        font-size: 18px;
+      }
+      
+      .login-error {
+        color: red;
+        margin: 0;
+      }
+
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .login-form {
+    width: 90%;
+    margin-top: 4em;
+    margin-bottom: 1em;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 500px) {
+  .login-form {
+    margin-top: 4em;
+    width: 70%;
+  }
+}
+
+@media (min-width: 700px) {
+  .login-form {
+    width: 50%;
+    margin-top: 4em;
+    margin-bottom: 2em;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 900px) {
+  .login-form {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .login-form {
+    width: 30%;
+    margin-top: 6em;
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 1500px) {
+  .login-form {
+    width: 25%;
+  }
+}
