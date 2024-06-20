@@ -10,6 +10,8 @@ import { environment } from "../../../environments/environment";
 export class AuthService {
   currentUser = signal<User | undefined | null>(undefined);
 
+  refreshingToken: boolean = false;
+
   BASE_URL: string = environment.API_DOMAIN + 'users/';
 
   constructor(private http: HttpClient) {}
@@ -24,5 +26,9 @@ export class AuthService {
 
   logout(token: string): Observable<string> {
     return this.http.delete<string>(this.BASE_URL + 'logout', { body: { token: token } });
+  }
+
+  refreshToken(token: string): Observable<any> {
+    return this.http.post<any>(this.BASE_URL + 'token', { token: token });
   }
 }
