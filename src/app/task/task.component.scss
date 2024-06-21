@@ -18,6 +18,19 @@ mat-toolbar {
     }
   }
 
+  .user-info {
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 18px;
+    }
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+
   button {
     font-size: 16px;
   }

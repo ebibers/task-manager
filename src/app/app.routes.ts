@@ -5,6 +5,8 @@ import { TaskListComponent } from './task/task-list/task-list.component';
 import { TaskDetailsComponent } from './task/task-details/task-details.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { ServerErrorComponent } from './shared/components/server-error/server-error.component';
+import { LoginComponent } from './login/login.component';
+import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -13,8 +15,13 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'tasks',
     component: TaskComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',

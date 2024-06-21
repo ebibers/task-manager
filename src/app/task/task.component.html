@@ -16,6 +16,17 @@
       <mat-icon>menue</mat-icon>
     </button>
   </div>
+  @if (authService.currentUser()) {
+    <div class="user-info">
+      <p>
+        {{ authService.currentUser()?.firstName }}
+        {{ authService.currentUser()?.lastName }}
+      </p>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  }
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over" autoFocus="false" role="navigation" position="end">
