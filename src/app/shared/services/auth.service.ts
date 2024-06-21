@@ -1,6 +1,6 @@
 import { Injectable, signal } from "@angular/core";
-import { HttpClient, HttpHeaderResponse } from "@angular/common/http";
-import { User } from "../models/user.model";
+import { HttpClient } from "@angular/common/http";
+import { currentUser } from "../models/user.model";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 
@@ -8,7 +8,7 @@ import { environment } from "../../../environments/environment";
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser = signal<User | undefined | null>(undefined);
+  currentUser = signal<currentUser | undefined | null>(undefined);
 
   refreshingToken: boolean = false;
 
@@ -20,8 +20,8 @@ export class AuthService {
     return this.http.post<any>(this.BASE_URL + 'login', userCredentials);
   }
 
-  getAuthUser(): Observable<User> {
-    return this.http.get<User>(this.BASE_URL + 'auth-user');
+  getAuthUser(): Observable<currentUser> {
+    return this.http.get<currentUser>(this.BASE_URL + 'auth-user');
   }
 
   logout(token: string): Observable<string> {
