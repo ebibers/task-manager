@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { ServerErrorComponent } from './shared/components/server-error/server-error.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'tasks',
