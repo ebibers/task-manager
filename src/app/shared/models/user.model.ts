@@ -7,3 +7,5 @@ export interface User {
 }
 
 export type currentUser = Omit<User, 'password'>;
+
+export type newUser = Omit<User, 'id'>;

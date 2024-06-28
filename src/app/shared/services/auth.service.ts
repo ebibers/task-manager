@@ -1,6 +1,6 @@
 import { Injectable, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { currentUser } from "../models/user.model";
+import { currentUser, newUser, User } from "../models/user.model";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 
@@ -18,6 +18,10 @@ export class AuthService {
 
   login(userCredentials: { username: string, password: string }): Observable<any> {
     return this.http.post<any>(this.BASE_URL + 'login', userCredentials);
+  }
+
+  register(user: newUser): Observable<User> {
+    return this.http.post<User>(this.BASE_URL + 'register', { user: user });
   }
 
   getAuthUser(): Observable<currentUser> {

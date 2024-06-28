@@ -1,0 +1,72 @@
+<div class="form-container">
+  <div class="register-form">
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      @if (registerError) {
+        <p class="register-error">Username is taken.</p>
+      }
+      <mat-form-field class="form-item">
+        <mat-label>
+          <mat-icon>person</mat-icon>
+          First Name
+        </mat-label>
+        <input matInput type="text" formControlName="firstName" />
+        @if (
+          registerForm.controls.firstName.invalid && 
+          (registerForm.controls.firstName.touched || registerForm.controls.firstName.dirty)) 
+          {
+          @if (registerForm.controls.firstName.errors?.["required"]) {
+            <mat-error>First name is required</mat-error>
+          }
+        }
+      </mat-form-field>
+      <mat-form-field class="form-item">
+        <mat-label>
+          <mat-icon>person</mat-icon>
+          Last Name
+        </mat-label>
+        <input matInput type="text" formControlName="lastName" />
+        @if (
+          registerForm.controls.lastName.invalid && 
+          (registerForm.controls.lastName.touched || registerForm.controls.lastName.dirty)) 
+          {
+          @if (registerForm.controls.lastName.errors?.["required"]) {
+            <mat-error>Last name is required</mat-error>
+          }
+        }
+      </mat-form-field>
+      <mat-form-field class="form-item">
+        <mat-label>
+          <mat-icon>person</mat-icon>
+          Username
+        </mat-label>
+        <input matInput type="text" formControlName="username" />
+        @if (
+          registerForm.controls.username.invalid && 
+          (registerForm.controls.username.touched || registerForm.controls.username.dirty)) 
+          {
+          @if (registerForm.controls.username.errors?.["required"]) {
+            <mat-error>username is required</mat-error>
+          }
+        }
+      </mat-form-field>
+      <mat-form-field class="form-item">
+        <mat-label>
+          <mat-icon>password</mat-icon>
+          Password
+        </mat-label>
+        <input matInput type="password" formControlName="password" />
+        @if (
+          registerForm.controls.password.invalid && 
+          (registerForm.controls.password.touched || registerForm.controls.password.dirty)) 
+          {
+          @if (registerForm.controls.password.errors?.["required"]) {
+            <mat-error>password is required</mat-error>
+          }
+        }
+      </mat-form-field>
+      <button mat-flat-button type="submit" [disabled]="!registerForm.valid">Register</button>
+      <a routerLink="/login">Login to your account</a>
+    </form>
+  </div>
+</div>
