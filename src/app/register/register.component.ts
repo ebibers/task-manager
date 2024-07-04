@@ -36,6 +36,7 @@ export class RegisterComponent implements OnDestroy {
   register() {
     if (this.registerForm.valid) {
       const registerData = {
+        roles: ['User'],
         firstName: this.registerForm.value.firstName as string,
         lastName: this.registerForm.value.lastName as string,
         username: this.registerForm.value.username as string,

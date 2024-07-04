@@ -1,0 +1,21 @@
+<div class="main-container">
+  <div class="list-container">
+    <h2>User List</h2>
+    <div class="user-list">
+      @if (users$ | async; as users) {
+        @for (user of users; track user.id; let last = $last) {
+          <div class="list-item">
+            <user-list-item [user]=user/>
+          </div>
+          @if (!last) {
+            <mat-divider></mat-divider>
+          }
+        } @empty {
+          <div class="empty-message">
+            <h2>No Users have been created yet!</h2>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>

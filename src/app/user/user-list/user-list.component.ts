@@ -1,0 +1,24 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../shared/services/user.service';
+import { UserListItemComponent } from '../user-list-item/user-list-item.component';
+
+@Component({
+  selector: 'user-list',
+  standalone: true,
+  imports: [MatDividerModule, AsyncPipe, UserListItemComponent],
+  templateUrl: './user-list.component.html',
+  styleUrl: './user-list.component.scss'
+})
+export class UserListComponent implements OnInit {
+  users$: Observable<User[]> | null = null;
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.users$ = this.userService.getAllUsers();
+  }
+}

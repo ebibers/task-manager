@@ -1,5 +1,6 @@
 export interface User {
   id: string,
+  roles: Array<string>,
   firstName: string,
   lastName: string,
   username: string,
