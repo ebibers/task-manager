@@ -8,6 +8,10 @@ import { ServerErrorComponent } from './shared/components/server-error/server-er
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { adminGuard } from './shared/guards/role.guard';
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +48,26 @@ export const routes: Routes = [
       {
         path: 'task-details/:id',
         component: TaskDetailsComponent,
+      }
+    ]
+  },
+  {
+    path: 'users',
+    component: UserComponent,
+    canActivate: [authGuard, adminGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'user-list',
+        pathMatch: 'full'
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent
+      },
+      {
+        path: 'user-details/:id',
+        component: UserDetailsComponent
       }
     ]
   },
