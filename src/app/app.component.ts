@@ -16,9 +16,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class AppComponent implements OnDestroy, OnInit {
   private destroy$: Subject<void> = new Subject<void>();
-
+  
   authService = inject(AuthService);
-
+  
   constructor (private router: Router) {}
 
   ngOnDestroy(): void {

@@ -1,21 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { map, Observable, of, Subject, switchMap, takeWhile, tap } from 'rxjs';
 import { User } from '../../shared/models/user.model';
 import { UserService } from '../../shared/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil, catchError } from 'rxjs';
-import { ParamMap } from '@angular/router';
+import { catchError } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'user-details',
   standalone: true,
-  imports: [AsyncPipe, MatIconModule, MatButtonModule, MatTooltipModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [AsyncPipe, MatSelectModule, MatIconModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
@@ -25,51 +24,48 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   editable: boolean = false;
 
   roleForm = new FormGroup({
-    user: new FormControl({ value: false, disabled: true }),
-    manager: new FormControl(false)
+    roles: new FormControl([''])
   });
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((params : ParamMap) => {
-      let id = params.get('id');
-
-      if (id) {
-        this.getUser(id);
-      }
-    });
+    this.user$ = this.route.paramMap.pipe(
+      map(params => params.get("id")),
+      switchMap(id => {
+        if (id) {
+          return this.userService.getUser(id).pipe(
+            catchError(err => {
+              this.router.navigate(['/404']);
+              
+              return of();
+            })
+          );
+        } else {
+          this.router.navigate(['/404']);
+        
+          return of();
+        }
+      })
+    )
   }
 
   onEdit(roles: string[]) {
-    const isUser = roles.includes('User');
-
-    const isManager = roles.includes('Manager');
-
     this.roleForm.setValue({
-      user: isUser,
-      manager: isManager
+      roles: roles
     });
 
     this.editable = true;
   }
 
   onSave(user: User) {
-    let roles: string[] = ["User"];
-
-    if (this.roleForm.value.manager) {
-      roles.push("Manager");
-    }
-
     if (user.roles.includes("Admin")) {
-      roles.push("Admin");
+      this.roleForm.value.roles?.push("Admin");
     }
 
     const editedUser: User = {
       id: user.id,
-      roles: roles,
+      roles: this.roleForm.value.roles as string[],
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
@@ -92,17 +88,6 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.roleForm.reset();
 
     this.editable = false;
-  }
-
-  getUser(id: string) {
-    this.user$ = this.userService.getUser(id)
-    .pipe(
-      catchError(err => {
-        this.router.navigate(['/404']);
-
-        return of();
-      })
-    );
   }
 
   ngOnDestroy(): void {

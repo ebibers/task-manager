@@ -13,12 +13,8 @@ import { UserListItemComponent } from '../user-list-item/user-list-item.componen
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
-export class UserListComponent implements OnInit {
-  users$: Observable<User[]> | null = null;
+export class UserListComponent {
+  users$: Observable<User[]> = this.userService.getAllUsers();
 
   constructor(private userService: UserService) {}
-
-  ngOnInit(): void {
-    this.users$ = this.userService.getAllUsers();
-  }
 }

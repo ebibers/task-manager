@@ -50,8 +50,10 @@
               <p>{{ role }}</p>
             }
           } @else {
-            <p><mat-checkbox formControlName="user">User</mat-checkbox></p>
-            <p><mat-checkbox formControlName="manager">Manager</mat-checkbox></p>
+            <mat-select formControlName="roles" multiple>
+              <mat-option [disabled]="true" value="User">User</mat-option>
+              <mat-option value="Manager">Manager</mat-option>
+            </mat-select>
           }
         </div>
       </div>
