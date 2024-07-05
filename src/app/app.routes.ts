@@ -39,7 +39,8 @@ export const routes: Routes = [
       },
       {
         path: 'create-task',
-        component: CreateTaskComponent
+        component: CreateTaskComponent,
+        canActivate: [adminGuard]
       },
       {
         path: 'task-list',

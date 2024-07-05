@@ -24,6 +24,14 @@ export class AuthService {
     }
   }
 
+  isManager(): boolean {
+    if (this.currentUser()?.roles.includes("Manager")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   login(userCredentials: { username: string, password: string }): Observable<any> {
     return this.http.post<any>(this.BASE_URL + 'login', userCredentials);
   }

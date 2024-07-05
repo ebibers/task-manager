@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Task } from '../shared/models/task.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'task-list-item',
@@ -17,6 +18,8 @@ export class TaskListItemComponent {
   @Input() task: Task | null = null;
   @Output() toggleCompleteEvent = new EventEmitter<{id: string, task: Task}>();
   @Output() removeTaskEvent = new EventEmitter<string>();
+
+  authService = inject(AuthService);
 
   togleComplete(id: any) {
     if (this.task) {

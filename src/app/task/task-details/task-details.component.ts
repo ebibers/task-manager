@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, Subject, catchError, filter, find, of, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, filter, find, map, of, switchMap, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -13,6 +13,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/models/user.model';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'task-details',
@@ -37,6 +38,8 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   });
 
   constructor(private taskService: TaskService, private userService: UserService, private router: Router, private route: ActivatedRoute) {}
+
+  authService = inject(AuthService);
 
   ngOnInit(): void {
     this.route.paramMap
@@ -79,15 +82,17 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   onEdit(task: Task) {
-    this.editForm.setValue({
-      title: task.title,
-      description: task.description,
-      type: task.type,
-      status: task.status,
-      assignedTo: task.assignedTo
-    });
+    if (this.authService.isAdmin() || this.authService.isManager()) {
+      this.editForm.setValue({
+        title: task.title,
+        description: task.description,
+        type: task.type,
+        status: task.status,
+        assignedTo: task.assignedTo
+      });
 
-    this.editable = !this.editable;
+      this.editable = !this.editable;
+    }
   }
 
   onCancel() {
@@ -97,7 +102,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSave(task: Task) {
-    if (this.editForm.valid) {
+    if (this.editForm.valid && (this.authService.isAdmin() || this.authService.isManager())) {
       const editedTask: Task = {
         id: task.id,
         title: this.editForm.value.title as string,
@@ -114,7 +119,8 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
           this.router.navigate(['/500']);
           
           return of();
-        })
+        }),
+        map(res => res.task)
       );
 
       this.editable = !this.editable;
