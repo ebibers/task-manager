@@ -39,6 +39,11 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
               this.router.navigate(['/404']);
               
               return of();
+            }),
+            tap((user) => {
+              this.roleForm.setValue({
+                roles: user.roles
+              });
             })
           );
         } else {
@@ -50,11 +55,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     )
   }
 
-  onEdit(roles: string[]) {
-    this.roleForm.setValue({
-      roles: roles
-    });
-
+  onEdit() {
     this.editable = true;
   }
 
@@ -84,8 +85,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.editable = false;
   }
 
-  onCancel() {
-    this.roleForm.reset();
+  onCancel(roles: string[]) {
+    this.roleForm.setValue({
+      roles: roles
+    });
 
     this.editable = false;
   }

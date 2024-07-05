@@ -4,12 +4,12 @@
       <div class="main-title-container">
         <h1>User Details</h1>
         @if (this.editable === false) {
-          <button mat-icon-button matTooltip="Edit Roles" type="button" (click)="onEdit(user.roles)">
+          <button mat-icon-button matTooltip="Edit Roles" type="button" (click)="onEdit()">
             <mat-icon>edit</mat-icon>
           </button>
         } @else {
           <div class="controls-container">
-            <button mat-icon-button matTooltip="Cancel" type="button" (click)="onCancel()">
+            <button mat-icon-button matTooltip="Cancel" type="button" (click)="onCancel(user.roles)">
               <mat-icon>close</mat-icon>
             </button>
             <button mat-icon-button matTooltip="Save" type="submit">
