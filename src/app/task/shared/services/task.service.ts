@@ -24,11 +24,11 @@ export class TaskService {
     return this.http.post<newTask>(this.BASE_URL, task);
   }
 
-  updateTask(id: string, task: Task): Observable<Task> {
-    return this.http.patch<Task>(this.BASE_URL + id, task);
+  updateTask(id: string, task: Task): Observable<{ task: Task, newList: Task[] }> {
+    return this.http.patch<{ task: Task, newList: Task[] }>(this.BASE_URL + id, task);
   }
 
-  removeTask(id: string): Observable<Task> {
-    return this.http.delete<Task>(this.BASE_URL + id);
+  removeTask(id: string): Observable<Task[]> {
+    return this.http.delete<Task[]>(this.BASE_URL + id);
   }
 }

@@ -1,58 +1,36 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Task } from '../shared/models/task.model';
 import { TaskService } from '../shared/services/task.service';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import {MatDividerModule} from '@angular/material/divider';
-import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
+import { AsyncPipe } from '@angular/common';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'task-list',
   standalone: true,
-  imports: [TaskListItemComponent, MatDividerModule],
+  imports: [TaskListItemComponent, MatDividerModule, AsyncPipe],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })
-export class TaskListComponent implements OnInit, OnDestroy {
-  private destroy$: Subject<void> = new Subject<void>();
-  taskList : Task[] = new Array();
+export class TaskListComponent {
+  tasks$ = this.taskService.getAllTasks();
 
   constructor(private taskService : TaskService, private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.getTasks();
-  }
-
-  getTasks() {
-    this.taskService.getAllTasks()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((data: Task[]) => {
-      this.taskList = data;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   updateTask(event: {id: string, task: Task}) {
     if (this.authService.isAdmin()) {
-      this.taskService.updateTask(event.id, event.task)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.getTasks();
-      });
+      this.tasks$ = this.taskService.updateTask(event.id, event.task)
+      .pipe(
+        map(res => res.newList)
+      );
     }
   }
 
   removeTask(id: string) {
     if (this.authService.isAdmin()) {
-      this.taskService.removeTask(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        this.getTasks();
-      });
+      this.tasks$ = this.taskService.removeTask(id);
     }
   }
 }

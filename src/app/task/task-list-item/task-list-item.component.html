@@ -1,25 +1,27 @@
 <div class="task-list-item">
-  <div class="title-container">
-    <mat-icon>task</mat-icon>
-    <a [routerLink]="['/tasks/task-details', task?.id]">{{ task?.title }}</a>
-  </div>
-  <div class="controls-container">
-    <p class="type">{{ task?.type }}</p>
-    @if (this.authService.isAdmin()) {
-      <label for="status">Completed:
-        <mat-slide-toggle name="status" (click)="togleComplete(task?.id)" [checked]="task?.status"></mat-slide-toggle>
-      </label>
-    } @else {
-      @if (task?.status) {
-        <p>Completed</p>
+  @if (task) {
+    <div class="title-container">
+      <mat-icon>task</mat-icon>
+      <a [routerLink]="['/tasks/task-details', task.id]">{{ task.title }}</a>
+    </div>
+    <div class="controls-container">
+      <p class="type">{{ task.type }}</p>
+      @if (this.authService.isAdmin()) {
+        <label for="status">Completed:
+          <mat-slide-toggle name="status" (click)="togleComplete(task.id)" [checked]="task.status"></mat-slide-toggle>
+        </label>
       } @else {
-        <p>To Do</p>
+        @if (task.status) {
+          <p>Completed</p>
+        } @else {
+          <p>To Do</p>
+        }
       }
-    }
-    @if (this.authService.isAdmin()) {
-      <button mat-icon-button (click)="removeTask(task?.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    }
-  </div>
+      @if (this.authService.isAdmin()) {
+        <button mat-icon-button (click)="removeTask(task.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      }
+    </div>
+  }
 </div>

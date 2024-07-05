@@ -4,7 +4,7 @@ import { TaskService } from '../shared/services/task.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DatePipe, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, Subject, catchError, filter, find, of, switchMap, takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, filter, find, map, of, switchMap, takeUntil } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -119,7 +119,8 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
           this.router.navigate(['/500']);
           
           return of();
-        })
+        }),
+        map(res => res.task)
       );
 
       this.editable = !this.editable;
