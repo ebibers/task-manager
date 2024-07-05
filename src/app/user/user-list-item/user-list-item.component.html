@@ -1,0 +1,14 @@
+<div class="user-list-item">
+  @if (user) {
+    <div class="name-container">
+      <mat-icon>person</mat-icon>
+      <p>{{ user.username }}</p>
+      <a [routerLink]="['/users/user-details', user.id]">{{ user.firstName }} {{user.lastName}}</a>
+    </div>
+    <div class="role-container">
+      @for (role of user.roles; track $index) {
+        <p class="role">{{ role }}</p>
+      }
+    </div>
+  }
+</div>
