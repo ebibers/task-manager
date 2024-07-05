@@ -4,6 +4,7 @@ import { TaskService } from '../shared/services/task.service';
 import { TaskListItemComponent } from '../task-list-item/task-list-item.component';
 import {MatDividerModule} from '@angular/material/divider';
 import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'task-list',
@@ -16,7 +17,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   taskList : Task[] = new Array();
 
-  constructor(private taskService : TaskService) {}
+  constructor(private taskService : TaskService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getTasks();
@@ -36,18 +37,22 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   updateTask(event: {id: string, task: Task}) {
-    this.taskService.updateTask(event.id, event.task)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(() => {
-      this.getTasks();
-    });
+    if (this.authService.isAdmin()) {
+      this.taskService.updateTask(event.id, event.task)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.getTasks();
+      });
+    }
   }
 
   removeTask(id: string) {
-    this.taskService.removeTask(id)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(() => {
-      this.getTasks();
-    });
+    if (this.authService.isAdmin()) {
+      this.taskService.removeTask(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.getTasks();
+      });
+    }
   }
 }

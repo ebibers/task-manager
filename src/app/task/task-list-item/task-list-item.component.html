@@ -5,11 +5,21 @@
   </div>
   <div class="controls-container">
     <p class="type">{{ task?.type }}</p>
-    <label for="status">Completed:
-      <mat-slide-toggle name="status" (click)="togleComplete(task?.id)" [checked]="task?.status"></mat-slide-toggle>
-    </label>
-    <button mat-icon-button (click)="removeTask(task?.id)">
-      <mat-icon>delete</mat-icon>
-    </button>
+    @if (this.authService.isAdmin()) {
+      <label for="status">Completed:
+        <mat-slide-toggle name="status" (click)="togleComplete(task?.id)" [checked]="task?.status"></mat-slide-toggle>
+      </label>
+    } @else {
+      @if (task?.status) {
+        <p>Completed</p>
+      } @else {
+        <p>To Do</p>
+      }
+    }
+    @if (this.authService.isAdmin()) {
+      <button mat-icon-button (click)="removeTask(task?.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    }
   </div>
 </div>
