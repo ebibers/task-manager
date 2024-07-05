@@ -24,7 +24,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   editable: boolean = false;
 
   roleForm = new FormGroup({
-    roles: new FormControl([''])
+    roles: new FormControl()
   });
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
@@ -86,9 +86,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   }
 
   onCancel(roles: string[]) {
-    this.roleForm.setValue({
-      roles: roles
-    });
+    this.roleForm.reset({ roles: roles });
 
     this.editable = false;
   }
