@@ -1,0 +1,103 @@
+{
+  "NAV": {
+    "CREATE": "AUFGABE ERSTELLEN",
+    "LIST": "AUFGABENLISTE",
+    "USER": "BENUTZERLISTE"
+  },
+
+  "LIST": {
+    "TITLE": "Aufgabenliste",
+    "COMPLETED": "Abgeschlossen",
+    "EMPTY": "Es wurde noch keine Aufgabe erstellt!"
+  },
+
+  "CREATE": {
+    "TITLE": "Aufgabe Erstellen",
+    "TITLE-FIELD": "Titel",
+    "DESCRIPTION": "Beschreibung",
+    "TYPE": "Typ",
+    "ASSIGNED": "Zugewiesen An",
+    "SUBMIT": "Aufgabe Erstellen",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "titel ist erforderlich",
+      "DESCRIPTION-REQUIRED": "beschreibung ist erforderlich",
+      "TYPE-REQUIRED": "typ ist erforderlich",
+      "ASSIGNED-REQUIRED": "wählen Sie eine Option"
+    }
+  },
+
+  "LOGIN": {
+    "TITLE": "Anmelden",
+    "USERNAME": "Benutzerkennwort",
+    "PASSWORD": "Passwort",
+    "SUBMIT": "Anmelden",
+    "REGISTER": "neues Konto registrieren",
+
+    "ERROR": {
+      "USERNAME-REQUIRED": "benutzerkennwort ist erforderlich",
+      "PASSWORD-REQUIRED": "passwort ist erforderlich",
+      "INCORECT": "anmeldeinformationen sind ungültig"
+    }
+  },
+
+  "REGISTER": {
+    "TITLE": "Register",
+    "SUBMIT": "Register",
+    "FNAME": "Vorname",
+    "LNAME": "Nachname",
+    "USERNAME": "Benutzerkennwort",
+    "PASSWORD": "Passwort",
+    "LOGIN": "Anmeldeseite",
+
+    "ERROR": {
+      "LNAME-REQUIRED": "nachname ist erforderlich",
+      "FNAME-REQUIRED": "vorname ist erforderlich",
+      "USERNAME-REQUIRED": "benutzerkennwort ist erforderlich",
+      "PASSWORD-REQUIRED": "passwort ist erforderlich",
+      "TAKEN": "benutzername wird genommen"
+    }
+  },
+
+  "USER": {
+    "TITLE": "Benutzerliste",
+    "EMPTY": "Es wurde noch kein Benutzer erstellt!"
+  },
+
+  "User": "Benutzer",
+  "Manager": "Manager",
+  "Admin": "Admin",
+
+  "TASK-DETAILS": {
+    "TITLE": "Beschreibung",
+    "DESCRIPTION": "beschreibung",
+    "TYPE": "Typ",
+    "STATUS": "Status",
+    "DATE": "Erstellungsdatum",
+    "ASSIGNED": "Zugewiesen An",
+    "EDIT": "Aufgabe bearbeiten",
+    "CANCEL": "Änderungen stornieren",
+    "SAVE": "Änderungen speichern",
+    "COMPLETED": "abgeschlossen",
+    "NCOMPLETED": "nicht abgeschlossen",
+    "UNASSIGNED": "NICHT ZUGEWIESEN",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "titel ist erforderlich",
+      "DESCRIPTION-REQUIRED": "beschreibung ist erforderlich",
+      "TYPE-REQUIRED": "typ ist erforderlich",
+      "ASSIGNED-REQUIRED": "wählen Sie eine Option"
+    }
+  },
+
+  "USER-DETAILS": {
+    "TITLE": "Benutzerdetails",
+    "EDIT": "Rollen Bearbeiten",
+    "CANCEL": "Änderungen stornieren",
+    "SAVE": "Änderungen speichern",
+    "FNAME": "Vorname",
+    "LNAME": "Nachname",
+    "USERNAME": "Benutzerkennwort",
+    "ROLES": "Rollen"
+  }
+}

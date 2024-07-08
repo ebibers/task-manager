@@ -7,7 +7,7 @@
     </div>
     <div class="role-container">
       @for (role of user.roles; track $index) {
-        <p class="role">{{ role }}</p>
+        <p class="role">{{ role | translate }}</p>
       }
     </div>
   }

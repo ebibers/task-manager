@@ -1,14 +1,14 @@
 <div class="form-container">
   <div class="login-form">
-    <h2>Login</h2>
+    <h2>{{ "LOGIN.TITLE" | translate }}</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       @if (loginError) {
-        <p class="login-error">Login information is not valid</p>
+        <p class="login-error">{{ "LOGIN.ERROR.INCORECT" | translate }}</p>
       }
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>person</mat-icon>
-          Username
+          {{ "LOGIN.USERNAME" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="username" />
         @if (
@@ -16,14 +16,14 @@
           (loginForm.controls.username.touched || loginForm.controls.username.dirty)) 
           {
           @if (loginForm.controls.username.errors?.["required"]) {
-            <mat-error>username is required</mat-error>
+            <mat-error>{{ "LOGIN.ERROR.USERNAME-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>password</mat-icon>
-          Password
+          {{ "LOGIN.PASSWORD" | translate }}
         </mat-label>
         <input matInput type="password" formControlName="password" />
         @if (
@@ -31,12 +31,12 @@
           (loginForm.controls.password.touched || loginForm.controls.password.dirty)) 
           {
           @if (loginForm.controls.password.errors?.["required"]) {
-            <mat-error>password is required</mat-error>
+            <mat-error>{{ "LOGIN.ERROR.PASSWORD-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
-      <button mat-flat-button type="submit" [disabled]="!loginForm.valid">Login</button>
-      <a routerLink="/register">Register new account</a>
+      <button mat-flat-button type="submit" [disabled]="!loginForm.valid">{{ "LOGIN.SUBMIT" | translate }}</button>
+      <a routerLink="/register">{{ "LOGIN.REGISTER" | translate }}</a>
     </form>
   </div>
 </div>

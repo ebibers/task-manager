@@ -6,11 +6,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import { AuthService } from '../../shared/services/auth.service';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'task-list',
   standalone: true,
-  imports: [TaskListItemComponent, MatDividerModule, AsyncPipe],
+  imports: [TaskListItemComponent, MatDividerModule, AsyncPipe, TranslateModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.scss'
 })

@@ -6,11 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AuthService } from '../../shared/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'task-list-item',
   standalone: true,
-  imports: [DatePipe, RouterLink, MatButtonModule, MatIconModule, MatSlideToggleModule],
+  imports: [DatePipe, RouterLink, MatButtonModule, MatIconModule, MatSlideToggleModule, TranslateModule],
   templateUrl: './task-list-item.component.html',
   styleUrl: './task-list-item.component.scss'
 })

@@ -1,14 +1,14 @@
 <div class="form-container">
   <div class="register-form">
-    <h2>Register</h2>
+    <h2>{{ "REGISTER.TITLE" | translate }}</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       @if (registerError) {
-        <p class="register-error">Username is taken.</p>
+        <p class="register-error">{{ "REGISTER.ERROR.TAKEN" | translate }}</p>
       }
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>person</mat-icon>
-          First Name
+          {{ "REGISTER.FNAME" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="firstName" />
         @if (
@@ -16,14 +16,14 @@
           (registerForm.controls.firstName.touched || registerForm.controls.firstName.dirty)) 
           {
           @if (registerForm.controls.firstName.errors?.["required"]) {
-            <mat-error>First name is required</mat-error>
+            <mat-error>{{ "REGISTER.ERROR.FNAME-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>person</mat-icon>
-          Last Name
+          {{ "REGISTER.LNAME" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="lastName" />
         @if (
@@ -31,14 +31,14 @@
           (registerForm.controls.lastName.touched || registerForm.controls.lastName.dirty)) 
           {
           @if (registerForm.controls.lastName.errors?.["required"]) {
-            <mat-error>Last name is required</mat-error>
+            <mat-error>{{ "REGISTER.ERROR.LNAME-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>person</mat-icon>
-          Username
+          {{ "REGISTER.USERNAME" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="username" />
         @if (
@@ -46,14 +46,14 @@
           (registerForm.controls.username.touched || registerForm.controls.username.dirty)) 
           {
           @if (registerForm.controls.username.errors?.["required"]) {
-            <mat-error>username is required</mat-error>
+            <mat-error>{{ "REGISTER.ERROR.USERNAME-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>password</mat-icon>
-          Password
+          {{ "REGISTER.PASSWORD" | translate }}
         </mat-label>
         <input matInput type="password" formControlName="password" />
         @if (
@@ -61,12 +61,12 @@
           (registerForm.controls.password.touched || registerForm.controls.password.dirty)) 
           {
           @if (registerForm.controls.password.errors?.["required"]) {
-            <mat-error>password is required</mat-error>
+            <mat-error>{{ "REGISTER.ERROR.PASSWORD-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
-      <button mat-flat-button type="submit" [disabled]="!registerForm.valid">Register</button>
-      <a routerLink="/login">Login to your account</a>
+      <button mat-flat-button type="submit" [disabled]="!registerForm.valid">{{ "REGISTER.SUBMIT" | translate }}</button>
+      <a routerLink="/login">{{ "REGISTER.LOGIN" | translate }}</a>
     </form>
   </div>
 </div>

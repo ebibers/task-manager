@@ -1,11 +1,11 @@
 <div class="form-container">
   <div class="task-form">
-    <h2>Create Task</h2>
+    <h2>{{ "CREATE.TITLE" | translate }}</h2>
     <form [formGroup]="taskForm" (ngSubmit)="createTask()">
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>text_fields</mat-icon>
-          Title
+          {{ "CREATE.TITLE-FIELD" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="title" />
         @if (
@@ -13,14 +13,14 @@
           (taskForm.controls.title.touched || taskForm.controls.title.dirty)) 
           {
           @if (taskForm.controls.title.errors?.["required"]) {
-            <mat-error>title is required</mat-error>
+            <mat-error>{{ "CREATE.ERROR.TITLE-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>description</mat-icon>
-          Description
+          {{ "CREATE.DESCRIPTION" | translate }}
         </mat-label>
         <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7" formControlName="description" ></textarea>
         @if (
@@ -28,14 +28,14 @@
           (taskForm.controls.description.touched || taskForm.controls.description.dirty)) 
           {
           @if (taskForm.controls.description.errors?.["required"]) {
-            <mat-error>description is required</mat-error>
+            <mat-error>{{ "CREATE.ERROR.DESCRIPTION-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>schedule</mat-icon>
-          Type
+          {{ "CREATE.TYPE" | translate }}
         </mat-label>
         <input matInput type="text" formControlName="type" />
         @if (
@@ -43,14 +43,14 @@
           (taskForm.controls.type.touched || taskForm.controls.type.dirty)) 
           {
           @if (taskForm.controls.type.errors?.["required"]) {
-            <mat-error>type is required</mat-error>
+            <mat-error>{{ "CREATE.ERROR.TYPE-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
       <mat-form-field class="form-item">
         <mat-label>
           <mat-icon>person</mat-icon>
-          Assigned To
+          {{ "CREATE.ASSIGNED" | translate }}
         </mat-label>
         <mat-select formControlName="assignedTo">
           <mat-option value="UNASSIGNED">
@@ -71,11 +71,11 @@
           (taskForm.controls.assignedTo.touched || taskForm.controls.assignedTo.dirty)) 
           {
           @if (taskForm.controls.assignedTo.errors?.["required"]) {
-            <mat-error>Choose an option</mat-error>
+            <mat-error>{{ "CREATE.ERROR.ASSIGNED-REQUIRED" | translate }}</mat-error>
           }
         }
       </mat-form-field>
-      <button mat-flat-button type="submit" [disabled]="!taskForm.valid">Create Task</button>
+      <button mat-flat-button type="submit" [disabled]="!taskForm.valid">{{ "CREATE.SUBMIT" | translate }}</button>
     </form>
   </div>
 </div>

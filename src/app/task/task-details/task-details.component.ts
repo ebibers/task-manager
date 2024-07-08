@@ -14,11 +14,12 @@ import { UserService } from '../../shared/services/user.service';
 import { User } from '../../shared/models/user.model';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from '../../shared/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'task-details',
   standalone: true,
-  imports: [DatePipe, AsyncPipe, MatIconModule, MatSelectModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
+  imports: [DatePipe, AsyncPipe, MatIconModule, MatSelectModule, TranslateModule, MatButtonModule, ReactiveFormsModule, MatTooltipModule, MatSlideToggleModule, MatInputModule],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.scss'
 })

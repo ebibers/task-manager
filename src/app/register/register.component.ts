@@ -6,11 +6,12 @@ import { AuthService } from '../shared/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'register-root',
   standalone: true,
-  imports: [MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink],
+  imports: [MatInputModule, MatButtonModule, TranslateModule, MatIconModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
