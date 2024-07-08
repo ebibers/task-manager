@@ -1,0 +1,105 @@
+{
+  "NAV": {
+    "CREATE": "IZVEIDOT UZDEVUMU",
+    "LIST": "UZDEVUMU SARAKSTS",
+    "USER": "LIETOTĀJU SARAKSTS"
+  },
+
+  "LIST": {
+    "TITLE": "Uzdevumu Saraksts",
+    "COMPLETED": "Pabeigts",
+    "EMPTY": "Nav izveidots neviens uzdevums!"
+  },
+
+  "CREATE": {
+    "TITLE": "Izveidot Uzdevumu",
+    "TITLE-FIELD": "Virsraksts",
+    "DESCRIPTION": "Apraksts",
+    "TYPE": "Tips",
+    "ASSIGNED": "Uzdots",
+    "SUBMIT": "Izveidot Uzdevumu",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "virsraksts ir obligāts",
+      "DESCRIPTION-REQUIRED": "apraksts ir obligāts",
+      "TYPE-REQUIRED": "tips ir obligāts",
+      "ASSIGNED-REQUIRED": "veiciet izvēli"
+    }
+  },
+
+  "LOGIN": {
+    "TITLE": "Pieslēgties",
+    "USERNAME": "Lietotājvārds",
+    "PASSWORD": "Parole",
+    "SUBMIT": "Pieslēgties",
+    "REGISTER": "Izveidot jaunu kontu",
+
+    "ERROR": {
+      "USERNAME-REQUIRED": "lietotājvārds ir obligāts",
+      "PASSWORD-REQUIRED": "parole ir obligāta",
+      "INCORECT": "pieslēgšanās dati nav derīgi"
+    }
+  },
+
+  "REGISTER": {
+    "TITLE": "Reģistrēties",
+    "SUBMIT": "Reģistrēties",
+    "FNAME": "Vārds",
+    "LNAME": "Uzvārds",
+    "USERNAME": "Lietotājvārds",
+    "PASSWORD": "Parole",
+    "LOGIN": "Pieslēgšanās lapa",
+
+    "ERROR": {
+      "LNAME-REQUIRED": "uzvārds ir obligāts",
+      "FNAME-REQUIRED": "vārds ir obligāts",
+      "USERNAME-REQUIRED": "lietotājvārds ir obligāts",
+      "PASSWORD-REQUIRED": "parole ir obligāta",
+      "TAKEN": "lietotājvārds ir aizņemts"
+    }
+  },
+
+  "USER": {
+    "TITLE": "Lietotāju Saraksts",
+    "EMPTY": "Nav izveidots neviens lietotājs!"
+  },
+
+  "ROLES": {
+    "USER": "Lietotājs",
+    "MANAGER": "Menedžeris",
+    "ADMIN": "Administrators"
+  },
+
+  "TASK-DETAILS": {
+    "TITLE": "Informācija",
+    "DESCRIPTION": "Apraksts",
+    "TYPE": "Tips",
+    "STATUS": "Status",
+    "DATE": "Izveidošanas Datums",
+    "ASSIGNED": "Uzdots",
+    "EDIT": "Rediģēt Uzdevumu",
+    "CANCEL": "Atcelt Izmaiņas",
+    "SAVE": "Saglabāt Izmaiņas",
+    "COMPLETED": "Pabeigts",
+    "NCOMPLETED": "Nepabeigts",
+    "UNASSIGNED": "NEUZDOTS",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "virsraksts ir obligāts",
+      "DESCRIPTION-REQUIRED": "apraksts ir obligāts",
+      "TYPE-REQUIRED": "tips ir obligāts",
+      "ASSIGNED-REQUIRED": "veiciet izvēli"
+    }
+  },
+
+  "USER-DETAILS": {
+    "TITLE": "Lietotāja Informācija",
+    "EDIT": "Rediģēt Lomas",
+    "CANCEL": "Atcelt Izmaiņas",
+    "SAVE": "Saglabāt Izmaiņas",
+    "FNAME": "Vārds",
+    "LNAME": "Uzvārds",
+    "USERNAME": "Lietotājvārds",
+    "ROLES": "Lomas"
+  }
+}

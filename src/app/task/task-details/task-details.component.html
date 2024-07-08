@@ -3,19 +3,19 @@
     <form class="task-details" [formGroup]="editForm" (ngSubmit)="onSave(task)">
       <div class="details-item">
         <div class="details-header">
-          <h1>Details</h1>
+          <h1>{{ "TASK-DETAILS.TITLE" | translate }}</h1>
           @if (!editable) {
             @if (this.authService.isAdmin() || this.authService.isManager()) {
-              <button mat-icon-button type="button" matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit(task)">
+              <button mat-icon-button type="button" matTooltip="{{ 'TASK-DETAILS.EDIT' | translate }}" matTooltipPosition="below" (click)="onEdit(task)">
                 <mat-icon>edit</mat-icon>
               </button>
             }
           } @else {
             <div>
-              <button mat-icon-button type="button" (click)="onCancel()" matTooltip="Cancel changes" matTooltipPosition="below">
+              <button mat-icon-button type="button" (click)="onCancel()" matTooltip="{{ 'TASK-DETAILS.CANCEL' | translate }}" matTooltipPosition="below">
                 <mat-icon>close</mat-icon>
               </button>
-              <button mat-icon-button type="submit" [disabled]="!editForm.valid" matTooltip="Save changes" matTooltipPosition="below">
+              <button mat-icon-button type="submit" [disabled]="!editForm.valid" matTooltip="{{ 'TASK-DETAILS.SAVE' | translate }}" matTooltipPosition="below">
                 <mat-icon>check</mat-icon>
               </button>
             </div>
@@ -31,7 +31,7 @@
               (editForm.controls.title.touched || editForm.controls.title.dirty)) 
               {
               @if (editForm.controls.title.errors?.["required"]) {
-                <small>*title is required</small>
+                <small>*{{ "TASK-DETAILS.ERROR.TITLE-REQUIRED" | translate }}</small>
               }
             }
           } @else {
@@ -42,7 +42,7 @@
       <div class="details-item">
         <div class="title-container">
           <mat-icon>description</mat-icon>
-          <h3>Description</h3>
+          <h3>{{ "TASK-DETAILS.DESCRIPTION" | translate }}</h3>
         </div>
         @if (!editable) {
           <p>{{ task.description }}</p>
@@ -54,7 +54,7 @@
               (editForm.controls.description.touched || editForm.controls.description.dirty)) 
               {
               @if (editForm.controls.description.errors?.["required"]) {
-                <small>*description is required</small>
+                <small>*{{ "TASK-DETAILS.ERROR.DESCRIPTION-REQUIRED" | translate }}</small>
               }
             }
           } @else {
@@ -65,7 +65,7 @@
       <div class="details-item">
         <div class="title-container">
           <mat-icon>schedule</mat-icon>
-          <h3>Type</h3>
+          <h3>{{ "TASK-DETAILS.TYPE" | translate }}</h3>
         </div>
         @if (!editable) {
           <p>{{ task.type }}</p>
@@ -77,7 +77,7 @@
               (editForm.controls.type.touched || editForm.controls.type.dirty)) 
               {
               @if (editForm.controls.type.errors?.["required"]) {
-                <small>*type is required</small>
+                <small>*{{ "TASK-DETAILS.ERROR.TYPE-REQUIRED" | translate }}</small>
               }
             }
           } @else {
@@ -88,24 +88,24 @@
       <div class="details-item">
         <div class="title-container">
           <mat-icon>check</mat-icon>
-          <h3>Status</h3>
+          <h3>{{ "TASK-DETAILS.STATUS" | translate }}</h3>
         </div>
         @if (!editable) {
           @if (task?.status) {
-            <p>Completed</p>
+            <p>{{ "TASK-DETAILS.COMPLETED" | translate }}</p>
           } @else {
-            <p>Not Completed</p>
+            <p>{{ "TASK-DETAILS.NCOMPLETED" | translate }}</p>
           }
         } @else {
           @if (this.authService.isAdmin()) {
-            <label>Completed:
+            <label>{{ "TASK-DETAILS.COMPLETED" | translate }}:
               <mat-slide-toggle formControlName="status" [checked]="editForm.value.status"></mat-slide-toggle>
             </label>
           } @else {
             @if (task?.status) {
-              <p>Completed</p>
+              <p>{{ "TASK-DETAILS.COMPLETED" | translate }}</p>
             } @else {
-              <p>Not Completed</p>
+              <p>{{ "TASK-DETAILS.NCOMPLETED" | translate }}</p>
             }
           }
         }
@@ -113,14 +113,14 @@
       <div class="details-item">
         <div class="title-container">
           <mat-icon>calendar_month</mat-icon>
-          <h3>Creation Date</h3>
+          <h3>{{ "TASK-DETAILS.DATE" | translate }}</h3>
         </div>
           <p>{{ task.createdOn | date: 'medium'}}</p>
       </div>
       <div class="details-item">
         <div class="title-container">
           <mat-icon>person</mat-icon>
-          <h3>Assigned To</h3>
+          <h3>{{ "TASK-DETAILS.ASSIGNED" | translate }}</h3>
         </div>
         @if (!editable) {
           @if (assignedUser$ | async; as assignedUser) {
@@ -130,12 +130,12 @@
               ({{ assignedUser.username }})
             </p>
           } @else {
-            <p>UNASSIGNED</p>
+            <p>{{ "TASK-DETAILS.UNASSIGNED" | translate }}</p>
           }
         } @else {
           <mat-select formControlName="assignedTo" [value]="editForm.value.assignedTo">
             <mat-option value="UNASSIGNED">
-              UNASSIGNED
+              {{ "TASK-DETAILS.UNASSIGNED" | translate }}
             </mat-option>
             @if (users$ | async; as users) {
               @for (user of users; track user.id) {
@@ -152,7 +152,7 @@
             (editForm.controls.assignedTo.touched || editForm.controls.assignedTo.dirty)) 
             {
             @if (editForm.controls.assignedTo.errors?.["required"]) {
-              <small>*Select an option</small>
+              <small>*{{ "TASK-DETAILS.ERROR.ASSIGNED-REQUIRED" | translate }}</small>
             }
           }
         }

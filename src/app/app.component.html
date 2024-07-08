@@ -2,27 +2,36 @@
   <div class="logo">
     <mat-icon>fact_check</mat-icon>
     <h1>TaskManager</h1>
+    <select #langSelect (change)="this.translate.use(langSelect.value)">
+      @for (lang of this.translate.getLangs(); track $index) {
+        <option [value]="lang" [selected]="lang === this.translate.currentLang">{{ lang }}</option>
+      }
+    </select>
   </div>
   <div class="nav-links">
     @if (this.authService.isAdmin()) {
       <button class="desktop-button" mat-button routerLink="/tasks/create-task">
         <mat-icon>add_task</mat-icon>
-        CREATE TASK
+        {{ "NAV.CREATE" | translate }}
       </button>
     }
-    <button class="desktop-button" mat-button routerLink="/tasks/task-list">
-      <mat-icon>list</mat-icon>
-      TASK LIST
-    </button>
+    @if (authService.currentUser()) {
+      <button class="desktop-button" mat-button routerLink="/tasks/task-list">
+        <mat-icon>list</mat-icon>
+        {{ "NAV.LIST" | translate }}
+      </button>
+    }
     @if (this.authService.isAdmin()) {
       <button class="desktop-button" mat-button routerLink="/users/user-list">
         <mat-icon>person</mat-icon>
-        USER LIST
+        {{ "NAV.USER" | translate }}
       </button>
     }
-    <button mat-icon-button (click)="sidenav.toggle()" class="mobile-button">
-      <mat-icon>menue</mat-icon>
-    </button>
+    @if (authService.currentUser()) {
+      <button mat-icon-button (click)="sidenav.toggle()" class="mobile-button">
+        <mat-icon>menue</mat-icon>
+      </button>
+    }
   </div>
   @if (authService.currentUser()) {
     <div class="user-info">
@@ -50,18 +59,20 @@
           </button>
         </div>
       }
-      <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/tasks/create-task">
-        <mat-icon>add_task</mat-icon>
-        CREATE TASK
-      </button>
+      @if (this.authService.isAdmin()) {
+        <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/tasks/create-task">
+          <mat-icon>add_task</mat-icon>
+          {{ "NAV.CREATE" | translate }}
+        </button>
+      }
       <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/tasks/task-list">
         <mat-icon>list</mat-icon>
-        TASK LIST
+        {{ "NAV.LIST" | translate }}
       </button>
       @if (this.authService.isAdmin()) {
         <button class="side-button" (click)="sidenav.toggle()" mat-button routerLink="/users/user-list">
           <mat-icon>person</mat-icon>
-          USER LIST
+          {{ "NAV.USER" | translate }}
         </button>
       }
     </div>

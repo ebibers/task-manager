@@ -42,6 +42,17 @@
   }
 }
 
+mat-select {
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #d1d1d1;
+  }
+}
+
 @media (min-width: 1000px) {
   .details-container {
     width: 30%;

@@ -7,7 +7,7 @@
     <div class="controls-container">
       <p class="type">{{ task.type }}</p>
       @if (this.authService.isAdmin()) {
-        <label for="status">Completed:
+        <label for="status">{{ "LIST.COMPLETED" | translate }}:
           <mat-slide-toggle name="status" (click)="togleComplete(task.id)" [checked]="task.status"></mat-slide-toggle>
         </label>
       } @else {
