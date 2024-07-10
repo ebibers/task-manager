@@ -7,6 +7,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { HttpClient, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { authInterceptor } from './shared/interceptors/auth.interceptor';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,5 +28,5 @@ export const appConfig: ApplicationConfig = {
 };
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'http://localhost:3000/api/translate/', '');
+  return new TranslateHttpLoader(http, environment.API_DOMAIN + 'translate/', '');
 }
