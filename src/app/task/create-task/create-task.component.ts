@@ -13,11 +13,12 @@ import { User } from '../../shared/models/user.model';
 import { UserService } from '../../shared/services/user.service';
 import {MatSelectModule} from '@angular/material/select';
 import { AsyncPipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'create-task',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, MatSelectModule, TaskListComponent, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, AsyncPipe, TranslateModule, MatSelectModule, TaskListComponent, MatInputModule, MatButtonModule, MatIconModule],
   templateUrl: './create-task.component.html',
   styleUrl: './create-task.component.scss'
 })

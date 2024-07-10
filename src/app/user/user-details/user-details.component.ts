@@ -10,11 +10,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'user-details',
   standalone: true,
-  imports: [AsyncPipe, MatSelectModule, MatIconModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule],
+  imports: [AsyncPipe, MatSelectModule, MatIconModule, UpperCasePipe, TranslateModule, MatButtonModule, MatTooltipModule, ReactiveFormsModule],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })

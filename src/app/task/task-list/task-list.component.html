@@ -1,7 +1,7 @@
 <div class="main-container">
   @if (tasks$ | async; as taskList) {
     <div class="list-container">
-      <h2>Task List</h2>
+      <h2>{{ "LIST.TITLE" | translate }}</h2>
       <div class="task-list">
         @for (task of taskList; track task.id; let last = $last) {
           <div class="list-item">
@@ -12,7 +12,7 @@
           }
         } @empty {
           <div class="empty-message">
-            <h2>No tasks have been created yet!</h2>
+            <h2>{{ "LIST.EMPTY" | translate }}</h2>
           </div>
         }
       </div>

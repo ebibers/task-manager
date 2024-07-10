@@ -1,0 +1,105 @@
+{
+  "NAV": {
+    "CREATE": "CREATE TASK",
+    "LIST": "TASK LIST",
+    "USER": "USER LIST"
+  },
+
+  "LIST": {
+    "TITLE": "Task List",
+    "COMPLETED": "Completed",
+    "EMPTY": "No tasks have been created yet!"
+  },
+
+  "CREATE": {
+    "TITLE": "Create Task",
+    "TITLE-FIELD": "Title",
+    "DESCRIPTION": "Description",
+    "TYPE": "Type",
+    "ASSIGNED": "Assigned To",
+    "SUBMIT": "Create Task",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "title is required",
+      "DESCRIPTION-REQUIRED": "description is required",
+      "TYPE-REQUIRED": "type is required",
+      "ASSIGNED-REQUIRED": "choose an option"
+    }
+  },
+
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "SUBMIT": "Login",
+    "REGISTER": "Register new account",
+
+    "ERROR": {
+      "USERNAME-REQUIRED": "username is required",
+      "PASSWORD-REQUIRED": "password is required",
+      "INCORECT": "login information is not valid"
+    }
+  },
+
+  "REGISTER": {
+    "TITLE": "Register",
+    "SUBMIT": "Register",
+    "FNAME": "First Name",
+    "LNAME": "Last Name",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN": "Login Page",
+
+    "ERROR": {
+      "LNAME-REQUIRED": "last name is required",
+      "FNAME-REQUIRED": "first name is required",
+      "USERNAME-REQUIRED": "username is required",
+      "PASSWORD-REQUIRED": "password is required",
+      "TAKEN": "username is taken"
+    }
+  },
+
+  "USER": {
+    "TITLE": "User List",
+    "EMPTY": "No users have been created yet!"
+  },
+
+  "ROLES": {
+    "USER": "User",
+    "MANAGER": "Manager",
+    "ADMIN": "Admin"
+  },
+
+  "TASK-DETAILS": {
+    "TITLE": "Details",
+    "DESCRIPTION": "Description",
+    "TYPE": "Type",
+    "STATUS": "Status",
+    "DATE": "Creation Date",
+    "ASSIGNED": "Assigned To",
+    "EDIT": "Edit Task",
+    "CANCEL": "Cancel Changes",
+    "SAVE": "Save Changes",
+    "COMPLETED": "Completed",
+    "NCOMPLETED": "Not Completed",
+    "UNASSIGNED": "UNASSIGNED",
+
+    "ERROR": {
+      "TITLE-REQUIRED": "title is required",
+      "DESCRIPTION-REQUIRED": "description is required",
+      "TYPE-REQUIRED": "type is required",
+      "ASSIGNED-REQUIRED": "choose an option"
+    }
+  },
+
+  "USER-DETAILS": {
+    "TITLE": "User Details",
+    "EDIT": "Edit Roles",
+    "CANCEL": "Cancel Changes",
+    "SAVE": "Save Changes",
+    "FNAME": "First Name",
+    "LNAME": "Last Name",
+    "USERNAME": "Username",
+    "ROLES": "Roles"
+  }
+}

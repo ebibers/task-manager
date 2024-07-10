@@ -2,17 +2,17 @@
   @if (user$ | async; as user) {
     <form class="details-container" [formGroup]="roleForm" (ngSubmit)="onSave(user)">
       <div class="main-title-container">
-        <h1>User Details</h1>
+        <h1>{{ "USER-DETAILS.TITLE" | translate }}</h1>
         @if (this.editable === false) {
-          <button mat-icon-button matTooltip="Edit Roles" type="button" (click)="onEdit()">
+          <button mat-icon-button matTooltip="{{ 'USER-DETAILS.EDIT' | translate }}" type="button" (click)="onEdit()">
             <mat-icon>edit</mat-icon>
           </button>
         } @else {
           <div class="controls-container">
-            <button mat-icon-button matTooltip="Cancel" type="button" (click)="onCancel(user.roles)">
+            <button mat-icon-button matTooltip="{{ 'USER-DETAILS.CANCEL' | translate }}" type="button" (click)="onCancel(user.roles)">
               <mat-icon>close</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Save" type="submit">
+            <button mat-icon-button matTooltip="{{ 'USER-DETAILS.SAVE' | translate }}" type="submit">
               <mat-icon>check</mat-icon>
             </button>
           </div>
@@ -22,37 +22,37 @@
         <div class="details-item">
           <div class="title-container">
             <mat-icon>title</mat-icon>
-            <h2>First Name</h2>
+            <h2>{{ "USER-DETAILS.FNAME" | translate }}</h2>
           </div>
           <p>{{ user.firstName }}</p>
         </div>
         <div class="details-item">
           <div class="title-container">
             <mat-icon>title</mat-icon>
-            <h2>Last Name</h2>
+            <h2>{{ "USER-DETAILS.LNAME" | translate }}</h2>
           </div>
           <p>{{ user.lastName }}</p>
         </div>
         <div class="details-item">
           <div class="title-container">
             <mat-icon>badge</mat-icon>
-            <h2>Username</h2>
+            <h2>{{ "USER-DETAILS.USERNAME" | translate }}</h2>
           </div>
           <p>{{ user.username }}</p>
         </div>
         <div class="details-item">
           <div class="title-container">
             <mat-icon>lock</mat-icon>
-            <h2>Roles</h2>
+            <h2>{{ "USER-DETAILS.ROLES" | translate }}</h2>
           </div>
           @if (this.editable === false) {
             @for (role of user.roles; track $index) {
-              <p>{{ role }}</p>
+              <p>{{ "ROLES." + role | uppercase | translate }}</p>
             }
           } @else {
             <mat-select formControlName="roles" multiple>
-              <mat-option [disabled]="true" value="User">User</mat-option>
-              <mat-option value="Manager">Manager</mat-option>
+              <mat-option [disabled]="true" value="User">{{ "ROLES.USER" | translate }}</mat-option>
+              <mat-option value="Manager">{{ "ROLES.MANAGER" | translate }}</mat-option>
             </mat-select>
           }
         </div>

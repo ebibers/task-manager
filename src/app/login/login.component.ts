@@ -6,11 +6,12 @@ import { AuthService } from '../shared/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'login-root',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, RouterLink],
+  imports: [ReactiveFormsModule, MatInputModule, TranslateModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
