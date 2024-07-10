@@ -27,5 +27,5 @@ export const appConfig: ApplicationConfig = {
 };
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'http://localhost:3000/api/translate/', '');
 }
