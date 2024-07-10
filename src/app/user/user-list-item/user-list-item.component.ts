@@ -4,11 +4,12 @@ import { Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'user-list-item',
   standalone: true,
-  imports: [RouterLink, MatIconModule, TranslateModule],
+  imports: [RouterLink, MatIconModule, TranslateModule, UpperCasePipe],
   templateUrl: './user-list-item.component.html',
   styleUrl: './user-list-item.component.scss'
 })

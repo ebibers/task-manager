@@ -64,9 +64,11 @@
     "EMPTY": "Nav izveidots neviens lietotājs!"
   },
 
-  "User": "Lietotājs",
-  "Manager": "Menedžeris",
-  "Admin": "Administrators",
+  "ROLES": {
+    "USER": "Lietotājs",
+    "MANAGER": "Menedžeris",
+    "ADMIN": "Administrators"
+  },
 
   "TASK-DETAILS": {
     "TITLE": "Informācija",

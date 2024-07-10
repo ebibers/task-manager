@@ -47,12 +47,12 @@
           </div>
           @if (this.editable === false) {
             @for (role of user.roles; track $index) {
-              <p>{{ role | translate }}</p>
+              <p>{{ "ROLES." + role | uppercase | translate }}</p>
             }
           } @else {
             <mat-select formControlName="roles" multiple>
-              <mat-option [disabled]="true" value="User">{{ "User" | translate }}</mat-option>
-              <mat-option value="Manager">{{ "Manager" | translate }}</mat-option>
+              <mat-option [disabled]="true" value="User">{{ "ROLES.USER" | translate }}</mat-option>
+              <mat-option value="Manager">{{ "ROLES.MANAGER" | translate }}</mat-option>
             </mat-select>
           }
         </div>

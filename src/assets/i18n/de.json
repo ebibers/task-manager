@@ -64,9 +64,11 @@
     "EMPTY": "Es wurde noch kein Benutzer erstellt!"
   },
 
-  "User": "Benutzer",
-  "Manager": "Manager",
-  "Admin": "Admin",
+  "ROLES": {
+    "USER": "Benutzer",
+    "MANAGER": "Manager",
+    "ADMIN": "Admin"
+  },
 
   "TASK-DETAILS": {
     "TITLE": "Beschreibung",

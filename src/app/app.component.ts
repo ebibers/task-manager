@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {MatSelectModule} from '@angular/material/select';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -21,19 +22,9 @@ export class AppComponent implements OnDestroy, OnInit {
   
   authService = inject(AuthService);
 
-  translate = inject(TranslateService)
+  translate = inject(TranslateService);
   
-  constructor (private router: Router) {
-    this.translate.addLangs(['en', 'de', 'lv']);
-
-    this.translate.setDefaultLang('en');
-
-    const browserLang = this.translate.getBrowserLang();
-
-    if (browserLang) {
-      this.translate.use(browserLang.match(/en|de|lv/) ? browserLang : 'en');
-    }
-  }
+  constructor (private router: Router, private appService: AppService) {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
