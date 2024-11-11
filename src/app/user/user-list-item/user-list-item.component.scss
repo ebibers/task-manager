@@ -1,0 +1,48 @@
+.user-list-item {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  justify-content: space-between;
+
+  .name-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0px;
+
+    mat-icon {
+      flex-shrink: 0;
+    }
+
+    p {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    a {
+      color: gray;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .role-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    p {
+      background: #4b5456;
+      color: #f2fbfd;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 8px;
+    }
+  }
+}

@@ -5,9 +5,11 @@
         <div class="details-header">
           <h1>Details</h1>
           @if (!editable) {
-            <button mat-icon-button type="button" matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit(task)">
-              <mat-icon>edit</mat-icon>
-            </button>
+            @if (this.authService.isAdmin() || this.authService.isManager()) {
+              <button mat-icon-button type="button" matTooltip="Edit task" matTooltipPosition="below" (click)="onEdit(task)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
           } @else {
             <div>
               <button mat-icon-button type="button" (click)="onCancel()" matTooltip="Cancel changes" matTooltipPosition="below">
@@ -22,14 +24,18 @@
         @if (!editable) {
           <h2>{{ task.title }}</h2>
         } @else {
-          <input type="text" class="edit-input" formControlName="title" [value]="editForm.value.title">
-          @if (
-            editForm.controls.title.invalid && 
-            (editForm.controls.title.touched || editForm.controls.title.dirty)) 
-            {
-            @if (editForm.controls.title.errors?.["required"]) {
-              <small>*title is required</small>
+          @if (this.authService.isAdmin()) {
+            <input type="text" class="edit-input" formControlName="title" [value]="editForm.value.title">
+            @if (
+              editForm.controls.title.invalid && 
+              (editForm.controls.title.touched || editForm.controls.title.dirty)) 
+              {
+              @if (editForm.controls.title.errors?.["required"]) {
+                <small>*title is required</small>
+              }
             }
+          } @else {
+            <h2>{{ task.title }}</h2>
           }
         }
       </div>
@@ -41,14 +47,18 @@
         @if (!editable) {
           <p>{{ task.description }}</p>
         } @else {
-          <input type="text" class="edit-input" formControlName="description" [value]="editForm.value.description">
-          @if (
-            editForm.controls.description.invalid && 
-            (editForm.controls.description.touched || editForm.controls.description.dirty)) 
-            {
-            @if (editForm.controls.description.errors?.["required"]) {
-              <small>*description is required</small>
+          @if (this.authService.isAdmin()) {
+            <input type="text" class="edit-input" formControlName="description" [value]="editForm.value.description">
+            @if (
+              editForm.controls.description.invalid && 
+              (editForm.controls.description.touched || editForm.controls.description.dirty)) 
+              {
+              @if (editForm.controls.description.errors?.["required"]) {
+                <small>*description is required</small>
+              }
             }
+          } @else {
+            <p>{{ task.description }}</p>
           }
         }
       </div>
@@ -60,14 +70,18 @@
         @if (!editable) {
           <p>{{ task.type }}</p>
         } @else {
-          <input type="text" class="edit-input" formControlName="type" [value]="editForm.value.type">
-          @if (
-            editForm.controls.type.invalid && 
-            (editForm.controls.type.touched || editForm.controls.type.dirty)) 
-            {
-            @if (editForm.controls.type.errors?.["required"]) {
-              <small>*type is required</small>
+          @if (this.authService.isAdmin()) {
+            <input type="text" class="edit-input" formControlName="type" [value]="editForm.value.type">
+            @if (
+              editForm.controls.type.invalid && 
+              (editForm.controls.type.touched || editForm.controls.type.dirty)) 
+              {
+              @if (editForm.controls.type.errors?.["required"]) {
+                <small>*type is required</small>
+              }
             }
+          } @else {
+            <p>{{ task.type }}</p>
           }
         }
       </div>
@@ -83,9 +97,17 @@
             <p>Not Completed</p>
           }
         } @else {
-          <label>Completed:
-            <mat-slide-toggle formControlName="status" [checked]="editForm.value.status"></mat-slide-toggle>
-          </label>
+          @if (this.authService.isAdmin()) {
+            <label>Completed:
+              <mat-slide-toggle formControlName="status" [checked]="editForm.value.status"></mat-slide-toggle>
+            </label>
+          } @else {
+            @if (task?.status) {
+              <p>Completed</p>
+            } @else {
+              <p>Not Completed</p>
+            }
+          }
         }
       </div>
       <div class="details-item">

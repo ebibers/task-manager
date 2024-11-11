@@ -19,4 +19,8 @@ export class UserService {
   getUser(id: string): Observable<User> {
     return this.http.get<User>(this.BASE_URL + id);
   }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.patch<User>(this.BASE_URL + user.id, user);
+  }
 }

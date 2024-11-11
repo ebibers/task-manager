@@ -1,5 +1,6 @@
 export interface User {
   id: string,
+  roles: string[],
   firstName: string,
   lastName: string,
   username: string,
