@@ -5,6 +5,7 @@ export interface Task {
   type: string;
   createdOn: Date | string;
   status: boolean;
+  assignedTo: string
 }
 
 export type newTask = Omit<Task, 'id'>;
